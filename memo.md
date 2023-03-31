@@ -1,4 +1,6 @@
-https://codepen.io/search/pens?q=canvas
+https://ics.media/tutorial-three/quickstart/
 
-https://codepen.io/akm2/pen/AGgarW
-https://codepen.io/ge1doot/pen/LZdOwj
+## 覚えておくこと
+
+- https://ics.media/tutorial-three/material_basic/
+  画像は GPU の制約から、2 の累乗の高さ・幅である画像のみが利用できます。
