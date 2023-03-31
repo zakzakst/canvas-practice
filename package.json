@@ -11,7 +11,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/sample/index.html",
-    "build": "parcel build src/**/*.html",
+    "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
