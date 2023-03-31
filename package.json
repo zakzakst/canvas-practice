@@ -1,0 +1,27 @@
+{
+  "devDependencies": {
+    "gh-pages": "^5.0.0",
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.60.0",
+    "typescript": "^5.0.3"
+  },
+  "name": "canvas-practice",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/sample/index.html",
+    "build": "parcel build src/**/*.html",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakzakst/canvas-practice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zakzakst/canvas-practice/issues"
+  },
+  "homepage": "https://github.com/zakzakst/canvas-practice#readme"
+}
