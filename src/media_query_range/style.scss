@@ -1,0 +1,30 @@
+$bk_sp: 480px;
+$bk_tb: 768px;
+$bk_pc: 1280px;
+$bk_wide: 1440px;
+
+.container {
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+  @media (width < $bk_sp) {
+    max-width: 360px;
+  }
+  @media ($bk_sp <= width < $bk_tb) {
+    max-width: 640px;
+  }
+  @media ($bk_tb <= width < $bk_pc) {
+    max-width: 960px;
+  }
+  @media ($bk_pc <= width < $bk_wide) {
+    max-width: 1040px;
+  }
+  @media ($bk_wide <= width) {
+    max-width: 1200px;
+  }
+}
+
+.box {
+  height: 200px;
+  background: #000;
+}
