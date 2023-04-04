@@ -23,9 +23,7 @@ const geometry = new THREE.SphereGeometry(300, 30, 30);
 
 // 画像を読み込む
 const loader = new THREE.TextureLoader();
-const texture = loader.load(
-  "https://ics-creative.github.io/tutorial-three/samples/imgs/earthmap1k.jpg"
-);
+const texture = loader.load("imgs/earthmap1k.jpg");
 const material = new THREE.MeshStandardMaterial({
   map: texture,
 });
