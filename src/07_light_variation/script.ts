@@ -36,22 +36,30 @@ meshKnot.position.set(0, 5, 0);
 scene.add(meshKnot);
 
 // const light = new THREE.AmbientLight(0xffffff, 1.0);
-const light = new THREE.DirectionalLight(0xffffff, 1);
+// const light = new THREE.DirectionalLight(0xffffff, 1);
+// const light = new THREE.HemisphereLight(0x888888, 0x0000ff, 1.0);
+// const light = new THREE.PointLight(0xffffff, 2, 50, 1.0);
+// const light = new THREE.SpotLight(0xffffff, 4, 30, Math.PI / 4, 10, 0.5);
+const light = new THREE.RectAreaLight(0xffffff, 5.0, 10, 10);
 scene.add(light);
 
-const lightHelper = new THREE.DirectionalLightHelper(light);
-scene.add(lightHelper);
+// const lightHelper = new THREE.DirectionalLightHelper(light);
+// const lightHelper = new THREE.HemisphereLightHelper(light);
+// const lightHelper = new THREE.PointLightHelper(light);
+// const lightHelper = new THREE.SpotLightHelper(light);
+// scene.add(lightHelper);
 
 const tick = () => {
   renderer.render(scene, camera);
 
   const t = Date.now() / 500;
-  const r = 10.0;
+  const r = 20.0;
   const lx = r * Math.cos(t);
   const lz = r * Math.sin(t);
   const ly = 6.0 + 5.0 * Math.sin(t / 3.0);
   light.position.set(lx, ly, lz);
-  lightHelper.update();
+  // lightHelper.update();
+  light.lookAt(new THREE.Vector3(0, 0, 0));
 
   requestAnimationFrame(tick);
 };
