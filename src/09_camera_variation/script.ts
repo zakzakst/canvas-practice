@@ -8,7 +8,7 @@ class MakeCanvas {
   renderer: any;
   camera: any;
   spotLight: any;
-  texture: any;
+  floor: any;
 
   constructor(id: string, width: number, height: number) {
     this.canvasEl = document.getElementById(id) as HTMLCanvasElement;
@@ -18,7 +18,14 @@ class MakeCanvas {
   }
 
   // 初期化
-  init() {}
+  init() {
+    this.renderInit();
+    this.cameraInit();
+    this.lightInit();
+    this.floorInit();
+    this.boxInit();
+    this.tick();
+  }
 
   // レンダラー初期化
   renderInit() {
@@ -53,6 +60,59 @@ class MakeCanvas {
   }
 
   // 地面初期化
+  floorInit() {
+    const texture = new THREE.TextureLoader().load(
+      "https://ics-creative.github.io/tutorial-three/samples/imgs/floor.png"
+    );
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(10, 10);
+    texture.magFilter = THREE.NearestFilter;
+
+    this.floor = new THREE.Mesh(
+      new THREE.PlaneGeometry(1000, 1000),
+      new THREE.MeshStandardMaterial({
+        map: texture,
+        roughness: 0.0,
+        metalness: 0.6,
+      })
+    );
+    this.floor.rotation.x = -Math.PI / 2;
+    this.floor.receiveShadow = true;
+    this.scene.add(this.floor);
+  }
+
+  // ボックス作成
+  boxInit() {
+    const material = new THREE.MeshStandardMaterial({
+      color: 0x22dd22,
+      roughness: 0.1,
+      metalness: 0.2,
+    });
+    const geometry = new THREE.BoxGeometry(45, 45, 45);
+
+    for (let i = 0; i < 60; i++) {
+      const box = new THREE.Mesh(geometry, material);
+      box.position.x = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
+      box.position.y = 25;
+      box.position.z = Math.round((Math.random() - 0.5) * 19) * 50 + 25;
+      box.receiveShadow = true;
+      box.castShadow = true;
+      this.scene.add(box);
+    }
+  }
+
+  // 描画
+  tick() {
+    this.camera.position.x = 500 * Math.sin(Date.now() / 2000);
+    this.camera.position.y = 250;
+    this.camera.position.z = 500 * Math.cos(Date.now() / 2000);
+    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    this.renderer.render(this.scene, this.camera);
+    requestAnimationFrame(() => {
+      this.tick();
+    });
+  }
 }
 
 const canvas = new MakeCanvas("canvas", 1600, 900);
