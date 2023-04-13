@@ -1,0 +1,2 @@
+.container{margin:0 auto;padding:0 16px;width:100%}@media (width < 480px){.container{max-width:360px}}@media (480px <= width < 768px){.container{max-width:640px}}@media (768px <= width < 1280px){.container{max-width:960px}}@media (1280px <= width < 1440px){.container{max-width:1040px}}@media (1440px <= width){.container{max-width:1200px}}.box{height:200px;background:#000}
+/*# sourceMappingURL=/canvas-practice/style.03dc45fa.css.map */

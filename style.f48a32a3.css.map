@@ -1,0 +1,1 @@
+{"version":3,"sources":["sample\\style.scss"],"names":[],"mappings":"AAAA,OACE,oBAAA,CACA,qBAAA,CACA","file":"style.f48a32a3.css","sourceRoot":"..\\src","sourcesContent":["canvas {\r\n  width: 100% !important;\r\n  height: auto !important;\r\n  aspect-ratio: 16 / 9;\r\n}\r\n"]}
