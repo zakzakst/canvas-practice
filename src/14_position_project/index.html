@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <link rel="stylesheet" href="./style.scss" />
+  </head>
+  <body>
+    <!-- https://ics.media/tutorial-three/position_project/ -->
+    <canvas id="canvas"></canvas>
+
+    <svg width="1600" height="900" style="position: absolute; top: 0; left: 0">
+      <g stroke="white">
+        <line id="svgLine" x1="0" y1="0" x2="0" y2="0" stroke-width="3" />
+      </g>
+    </svg>
+
+    <div
+      id="hud"
+      style="position: absolute; top: 0; left: 0; background: white"
+    ></div>
+    <script src="./script.ts"></script>
+  </body>
+</html>

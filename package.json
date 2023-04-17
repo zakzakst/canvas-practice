@@ -11,7 +11,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/view-transitions/*.html",
-    "dev2": "parcel src/13_position_world/*.html",
+    "dev2": "parcel src/14_position_project/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist"
   },
