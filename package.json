@@ -11,7 +11,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/view-transitions/*.html",
-    "dev2": "parcel src/18_points/*.html",
+    "dev2": "parcel src/19_geometry_merge/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist"
   },
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/zakzakst/canvas-practice#readme",
   "dependencies": {
+    "stats-js": "^1.0.1",
     "three": "^0.151.2",
     "vue": "^3.2.47"
   }
