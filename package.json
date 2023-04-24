@@ -11,7 +11,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/web_audio_api/*.html",
-    "dev2": "parcel src/21_class_method/*.html",
+    "dev2": "parcel src/22_math/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist"
   },
