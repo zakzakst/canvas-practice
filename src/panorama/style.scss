@@ -1,5 +1,9 @@
-// canvas {
-//   width: 100% !important;
-//   height: auto !important;
-//   aspect-ratio: 16 / 9;
-// }
+.stage {
+  cursor: grab;
+  &.--mouse-down {
+    cursor: grabbing;
+  }
+  &.--on-thumbnail {
+    cursor: pointer;
+  }
+}
