@@ -157,8 +157,6 @@ class Panorama {
       this.meshList.push(mesh);
     }
     // サムネイルタイトルも追加したい（下にプレートをずらして配置してその上にテキスト載せるとか？）
-    // クリック時にモーダル開いて回転止まる
-    // モーダル閉じた時に回転再開
   }
 
   /**
@@ -207,6 +205,9 @@ class Panorama {
    * 交差判定
    */
   updateIntersects() {
+    // ドラッグ中は処理をしない
+    if (this.isMouseDown) return;
+
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const intersects = this.raycaster.intersectObjects(this.meshList);
 
@@ -216,10 +217,7 @@ class Panorama {
         // 色変えでなくシェーダーで何かしらの変化付けたい
         this.stageEl.classList.add(this.classNames.onThumbnail);
         mesh.material.color.setHex(0x999999);
-        if (!this.isMouseDown) {
-          // NOTE: ドラッグをサムネイルの上で解除した際、発火してほしくないクリックイベントが発生してしまうことへの対処
-          this.hoverThumbnailId = this.thumbnails[i].id;
-        }
+        this.hoverThumbnailId = this.thumbnails[i].id;
         break;
       } else {
         this.stageEl.classList.remove(this.classNames.onThumbnail);
@@ -280,8 +278,18 @@ class Panorama {
    */
   handleClick() {
     if (this.hoverThumbnailId) {
-      alert(this.hoverThumbnailId);
+      const targetThumbnail = this.thumbnails.find(
+        (thumbnail) => thumbnail.id === this.hoverThumbnailId
+      );
+      console.log(targetThumbnail);
+      // TODO: モーダル表示
+      this.controls.autoRotate = false;
+    } else {
+      // TODO: モーダル表示がない状態での暫定対応、モーダルを閉じる時の処理に組み込んだら記述削除
+      // this.controls.autoRotate = true;
     }
+    // クリック時にモーダル開いて回転止まる
+    // モーダル閉じた時に回転再開
   }
 }
 
