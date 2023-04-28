@@ -94,11 +94,14 @@ class Panorama {
     this.setRenderer();
     this.renderer.render(this.scene, this.camera);
     this.setOrbitControls();
+    this.setControlAngle();
+    // 各種イベント設定
     window.addEventListener("resize", this.handleResize.bind(this), false);
     this.stageEl.addEventListener("mousemove", this.handleMouseMove.bind(this));
     this.stageEl.addEventListener("click", this.handleClick.bind(this));
     this.stageEl.addEventListener("mousedown", this.handleMouseDown.bind(this));
     this.stageEl.addEventListener("mouseup", this.handleMouseUp.bind(this));
+    // 描画開始
     this.render();
   }
 
@@ -114,7 +117,6 @@ class Panorama {
     );
     this.camera.position.set(0, 0, 0);
     this.scene.add(this.camera);
-    // TODO: 初期表示時に向いている方向を指定 or ランダムに設定できるようにする
   }
 
   /**
@@ -187,9 +189,9 @@ class Panorama {
   setOrbitControls() {
     this.controls = new OrbitControls(this.camera, this.element);
     this.controls.target.set(
-      this.camera.position.x + 0.15,
+      this.camera.position.x + Math.cos(0),
       this.camera.position.y,
-      this.camera.position.z
+      this.camera.position.z + Math.sin(0)
     );
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.2;
@@ -199,6 +201,28 @@ class Panorama {
     // this.controls.autoRotateSpeed = 1;
     // this.controls.maxPolarAngle = Math.PI / 2;
     // this.controls.minPolarAngle = Math.PI / 2;
+  }
+
+  /**
+   * 向いている方向の変更
+   * @param id サムネイルID
+   */
+  setControlAngle(id: string | null = null) {
+    // idから指定サムネイルのindexを取得
+    const targetThumbnail = this.thumbnails.find(
+      (thumbnail) => thumbnail.id === id
+    );
+    const targetIndex = this.thumbnails.indexOf(targetThumbnail);
+    // ランダムなサムネイルのindexを取得
+    const randomIndex = Math.floor(Math.random() * this.thumbnails.length);
+    // 指定サムネイルの有無から角度設定に適用するindexを取得
+    const index = targetIndex !== -1 ? targetIndex : randomIndex;
+    const radian = (index / this.thumbnails.length) * Math.PI * 2;
+    this.controls.target.set(
+      this.camera.position.x + Math.cos(radian),
+      this.camera.position.y,
+      this.camera.position.z + Math.sin(radian)
+    );
   }
 
   /**
