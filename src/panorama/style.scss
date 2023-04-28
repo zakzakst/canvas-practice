@@ -1,3 +1,9 @@
-.stage.--on-thumbnail {
-  cursor: pointer;
+.stage {
+  cursor: grab;
+  &.--mouse-down {
+    cursor: grabbing;
+  }
+  &.--on-thumbnail {
+    cursor: pointer;
+  }
 }

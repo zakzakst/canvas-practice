@@ -17,6 +17,8 @@ class Panorama {
   hoverThumbnailId: string | null;
   thumbnails: any[];
   isMouseDown: boolean;
+  fov: any;
+  breakpoint: number;
 
   constructor(stageId: string) {
     this.width = window.innerWidth;
@@ -28,6 +30,7 @@ class Panorama {
     this.mouse = new THREE.Vector2();
     this.classNames = {
       onThumbnail: "--on-thumbnail",
+      mouseDown: "--mouse-down",
     };
     this.hoverThumbnailId = null;
     this.thumbnails = [
@@ -81,6 +84,11 @@ class Panorama {
       },
     ];
     this.isMouseDown = false;
+    this.fov = {
+      sp: 55,
+      pc: 75,
+    };
+    this.breakpoint = 768;
   }
 
   /**
@@ -109,8 +117,9 @@ class Panorama {
    * カメラ設定
    */
   setCamera() {
+    const fov = this.getDeviceType() === "pc" ? this.fov.pc : this.fov.sp;
     this.camera = new THREE.PerspectiveCamera(
-      75,
+      fov,
       this.width / this.height,
       1,
       1000
@@ -159,6 +168,8 @@ class Panorama {
       this.meshList.push(mesh);
     }
     // サムネイルタイトルも追加したい（下にプレートをずらして配置してその上にテキスト載せるとか？）
+    // ちょっと手間そう。対応しない ※文字入れるのは別でやってみたい
+    // https://zenn.dev/raihara3/articles/20220529_threejs_japanese_text
   }
 
   /**
@@ -196,11 +207,11 @@ class Panorama {
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.2;
     this.controls.rotateSpeed = 0.1;
-    // this.controls.enableZoom = false;
-    // this.controls.autoRotate = true;
-    // this.controls.autoRotateSpeed = 1;
-    // this.controls.maxPolarAngle = Math.PI / 2;
-    // this.controls.minPolarAngle = Math.PI / 2;
+    this.controls.enableZoom = false;
+    this.controls.autoRotate = true;
+    this.controls.autoRotateSpeed = 1;
+    this.controls.maxPolarAngle = Math.PI / 2;
+    this.controls.minPolarAngle = Math.PI / 2;
   }
 
   /**
@@ -238,17 +249,33 @@ class Panorama {
     for (let i = 0; i < this.meshList.length; i++) {
       const mesh = this.meshList[i];
       if (intersects.length > 0 && mesh === intersects[0].object) {
-        // 色変えでなくシェーダーで何かしらの変化付けたい
         this.stageEl.classList.add(this.classNames.onThumbnail);
-        mesh.material.color.setHex(0x999999);
+        this.meshMouseOn(mesh);
         this.hoverThumbnailId = this.thumbnails[i].id;
         break;
       } else {
         this.stageEl.classList.remove(this.classNames.onThumbnail);
-        mesh.material.color.setHex(0xffffff);
+        this.meshMouseOut(mesh);
         this.hoverThumbnailId = null;
       }
     }
+  }
+
+  /**
+   * マウスが入った際のメッシュ操作
+   * @param mesh 操作するメッシュ
+   */
+  meshMouseOn(mesh) {
+    // 色変えでなくシェーダーで何かしらの変化付けたい
+    mesh.material.color.setHex(0x999999);
+  }
+
+  /**
+   * マウスが出た際のメッシュ操作
+   * @param mesh 操作するメッシュ
+   */
+  meshMouseOut(mesh) {
+    mesh.material.color.setHex(0xffffff);
   }
 
   /**
@@ -261,11 +288,21 @@ class Panorama {
   }
 
   /**
+   * デバイス判定
+   * @returns string デバイスタイプ
+   */
+  getDeviceType(): "pc" | "sp" {
+    return window.innerWidth >= this.breakpoint ? "pc" : "sp";
+  }
+
+  /**
    * リサイズ処理
    */
   handleResize() {
+    const fov = this.getDeviceType() === "pc" ? this.fov.pc : this.fov.sp;
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.fov = fov;
     this.camera.updateProjectionMatrix();
   }
 
@@ -287,6 +324,7 @@ class Panorama {
    * マウスダウン処理
    */
   handleMouseDown() {
+    this.stageEl.classList.add(this.classNames.mouseDown);
     this.isMouseDown = true;
   }
 
@@ -294,6 +332,7 @@ class Panorama {
    * マウスアップ処理
    */
   handleMouseUp() {
+    this.stageEl.classList.remove(this.classNames.mouseDown);
     this.isMouseDown = false;
   }
 
@@ -310,7 +349,7 @@ class Panorama {
       this.controls.autoRotate = false;
     } else {
       // TODO: モーダル表示がない状態での暫定対応、モーダルを閉じる時の処理に組み込んだら記述削除
-      // this.controls.autoRotate = true;
+      this.controls.autoRotate = true;
     }
     // クリック時にモーダル開いて回転止まる
     // モーダル閉じた時に回転再開
