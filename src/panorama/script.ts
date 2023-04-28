@@ -13,6 +13,10 @@ class Panorama {
   meshList: any[];
   raycaster: any;
   mouse: any;
+  classNames: any;
+  hoverThumbnailId: string | null;
+  thumbnails: any[];
+  isMouseDown: boolean;
 
   constructor(stageId: string) {
     this.width = window.innerWidth;
@@ -22,6 +26,61 @@ class Panorama {
     this.meshList = [];
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
+    this.classNames = {
+      onThumbnail: "--on-thumbnail",
+    };
+    this.hoverThumbnailId = null;
+    this.thumbnails = [
+      {
+        id: "1",
+        img: "https://picsum.photos/id/237/300/300",
+      },
+      {
+        id: "2",
+        img: "https://picsum.photos/id/238/300/300",
+      },
+      {
+        id: "3",
+        img: "https://picsum.photos/id/239/300/300",
+      },
+      {
+        id: "4",
+        img: "https://picsum.photos/id/240/300/300",
+      },
+      {
+        id: "5",
+        img: "https://picsum.photos/id/241/300/300",
+      },
+      {
+        id: "6",
+        img: "https://picsum.photos/id/242/300/300",
+      },
+      {
+        id: "7",
+        img: "https://picsum.photos/id/243/300/300",
+      },
+      {
+        id: "8",
+        img: "https://picsum.photos/id/244/300/300",
+      },
+      {
+        id: "9",
+        img: "https://picsum.photos/id/247/300/300",
+      },
+      {
+        id: "10",
+        img: "https://picsum.photos/id/248/300/300",
+      },
+      {
+        id: "11",
+        img: "https://picsum.photos/id/249/300/300",
+      },
+      {
+        id: "12",
+        img: "https://picsum.photos/id/250/300/300",
+      },
+    ];
+    this.isMouseDown = false;
   }
 
   /**
@@ -37,6 +96,9 @@ class Panorama {
     this.setOrbitControls();
     window.addEventListener("resize", this.handleResize.bind(this), false);
     this.stageEl.addEventListener("mousemove", this.handleMouseMove.bind(this));
+    this.stageEl.addEventListener("click", this.handleClick.bind(this));
+    this.stageEl.addEventListener("mousedown", this.handleMouseDown.bind(this));
+    this.stageEl.addEventListener("mouseup", this.handleMouseUp.bind(this));
     this.render();
   }
 
@@ -52,6 +114,7 @@ class Panorama {
     );
     this.camera.position.set(0, 0, 0);
     this.scene.add(this.camera);
+    // TODO: 初期表示時に向いている方向を指定 or ランダムに設定できるようにする
   }
 
   /**
@@ -75,30 +138,16 @@ class Panorama {
    * サムネイル設定
    */
   setThumbnails() {
-    const thumbnails = [
-      "https://picsum.photos/id/237/300/300",
-      "https://picsum.photos/id/238/300/300",
-      "https://picsum.photos/id/239/300/300",
-      "https://picsum.photos/id/240/300/300",
-      "https://picsum.photos/id/241/300/300",
-      "https://picsum.photos/id/242/300/300",
-      "https://picsum.photos/id/243/300/300",
-      "https://picsum.photos/id/244/300/300",
-      "https://picsum.photos/id/247/300/300",
-      "https://picsum.photos/id/248/300/300",
-      "https://picsum.photos/id/249/300/300",
-      "https://picsum.photos/id/250/300/300",
-    ];
     const geometry = new THREE.PlaneGeometry(30, 30);
-    for (let i = 0; i < thumbnails.length; i++) {
+    for (let i = 0; i < this.thumbnails.length; i++) {
       const loader = new THREE.TextureLoader();
-      const texture = loader.load(thumbnails[i]);
+      const texture = loader.load(this.thumbnails[i].img);
       const material = new THREE.MeshStandardMaterial({
         map: texture,
       });
       const mesh = new THREE.Mesh(geometry, material);
       this.scene.add(mesh);
-      const radian = (i / thumbnails.length) * Math.PI * 2;
+      const radian = (i / this.thumbnails.length) * Math.PI * 2;
       mesh.position.set(
         80 * Math.cos(radian),
         20 * (Math.random() - 0.5) * 2,
@@ -107,10 +156,9 @@ class Panorama {
       mesh.rotation.y = -(Math.PI / 2 + radian);
       this.meshList.push(mesh);
     }
+    // サムネイルタイトルも追加したい（下にプレートをずらして配置してその上にテキスト載せるとか？）
     // クリック時にモーダル開いて回転止まる
     // モーダル閉じた時に回転再開
-    // ホバー時に回転止まる
-    // ホバー解除時に回転再開
   }
 
   /**
@@ -161,21 +209,30 @@ class Panorama {
   updateIntersects() {
     this.raycaster.setFromCamera(this.mouse, this.camera);
     const intersects = this.raycaster.intersectObjects(this.meshList);
-    this.meshList.forEach((mesh) => {
-      // TODO: ホバー時のカーソル変更が上手くいかない
+
+    for (let i = 0; i < this.meshList.length; i++) {
+      const mesh = this.meshList[i];
       if (intersects.length > 0 && mesh === intersects[0].object) {
+        // 色変えでなくシェーダーで何かしらの変化付けたい
+        this.stageEl.classList.add(this.classNames.onThumbnail);
         mesh.material.color.setHex(0x999999);
+        if (!this.isMouseDown) {
+          // NOTE: ドラッグをサムネイルの上で解除した際、発火してほしくないクリックイベントが発生してしまうことへの対処
+          this.hoverThumbnailId = this.thumbnails[i].id;
+        }
+        break;
       } else {
+        this.stageEl.classList.remove(this.classNames.onThumbnail);
         mesh.material.color.setHex(0xffffff);
+        this.hoverThumbnailId = null;
       }
-    });
+    }
   }
 
   /**
    * 画面描画
    */
   render() {
-    this.updateIntersects();
     requestAnimationFrame(this.render.bind(this));
     this.renderer.render(this.scene, this.camera);
     this.controls.update();
@@ -201,6 +258,30 @@ class Panorama {
     const h = element.offsetHeight;
     this.mouse.x = (x / w) * 2 - 1;
     this.mouse.y = -(y / h) * 2 + 1;
+    this.updateIntersects();
+  }
+
+  /**
+   * マウスダウン処理
+   */
+  handleMouseDown() {
+    this.isMouseDown = true;
+  }
+
+  /**
+   * マウスアップ処理
+   */
+  handleMouseUp() {
+    this.isMouseDown = false;
+  }
+
+  /**
+   * マウスクリック処理
+   */
+  handleClick() {
+    if (this.hoverThumbnailId) {
+      alert(this.hoverThumbnailId);
+    }
   }
 }
 
