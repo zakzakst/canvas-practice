@@ -104,4 +104,19 @@ const convolutionFilter = new ConvolutionFilter(
 // 交差線
 const crossHatchFilter = new CrossHatchFilter();
 
-img.filters = [crossHatchFilter];
+// ブラウン管的な表現？
+const crtFilter = new CRTFilter({
+  curvature: 10, // 線の歪み
+  lineWidth: 5,
+  lineContrast: 1,
+  // verticalLine: true,
+  noise: 0.2,
+  noiseSize: 2,
+  vignetting: 0.3, // 淵の影の範囲
+  vignettingAlpha: 0.7,
+  vignettingBlur: 0.2,
+  seed: 0, // よく分からない
+  time: 0.5, // よく分からない
+});
+
+img.filters = [crtFilter];
