@@ -14,18 +14,18 @@ import {
   CrossHatchFilter,
   CRTFilter,
   DotFilter,
-  DropShadowFilter,
-  EmbossFilter,
+  DropShadowFilter, // 使い方難しいので一旦スルー
+  EmbossFilter, // 使い方難しいので一旦スルー
   GlitchFilter,
-  GlowFilter,
+  GlowFilter, // 使い方難しいので一旦スルー
   GodrayFilter,
-  GrayscaleFilter,
-  HslAdjustmentFilter,
+  GrayscaleFilter, // グレースケールなので、CSSでいいかと思う
+  HslAdjustmentFilter, // 使い方難しいので一旦スルー
   KawaseBlurFilter,
   MotionBlurFilter,
-  MultiColorReplaceFilter,
+  MultiColorReplaceFilter, // 使い方難しいので一旦スルー
   OldFilmFilter,
-  OutlineFilter,
+  OutlineFilter, // 使い方難しいので一旦スルー
   PixelateFilter,
   RadialBlurFilter,
   ReflectionFilter,
@@ -119,4 +119,44 @@ const crtFilter = new CRTFilter({
   time: 0.5, // よく分からない
 });
 
-img.filters = [crtFilter];
+// ドット
+const dotFilter = new DotFilter(1, 5, false);
+
+// グリッチ
+const glitchFilter = new GlitchFilter({
+  seed: 0.5, // よく分からない
+  slices: 10,
+  offset: 100,
+  direction: 0, // 角度
+  fillMode: 2, // 下記参照
+  // https://github.com/pixijs/filters/blob/main/filters/glitch/src/GlitchFilter.ts#L116-L121
+  red: [10, 10],
+  blue: [-10, -10],
+  green: [-5, 5],
+});
+
+// 神の光？
+const godrayFilter = new GodrayFilter({
+  time: 0, // よく分からない
+  gain: 0.75, // 強さ？
+  lacunarity: 4, // 細かさ？
+  alpha: 1,
+  // parallel: false,
+  angle: 45,
+  center: [0, 0], // よく分からない
+});
+
+// const kawaseBlurFilter = new KawaseBlurFilter({})
+// const motionBlurFilter = new MotionBlurFilter({})
+// const oldFilmFilter = new OldFilmFilter({})
+// const pixelateFilter = new PixelateFilter({})
+// const radialBlurFilter = new RadialBlurFilter({})
+// const reflectionFilter = new ReflectionFilter({})
+// const rGBSplitFilter = new RGBSplitFilter({})
+// const shockwaveFilter = new ShockwaveFilter({})
+// const simpleLightmapFilter = new SimpleLightmapFilter({})
+// const tiltShiftFilter = new TiltShiftFilter({})
+// const twistFilter = new TwistFilter({})
+// const zoomBlurFilter = new ZoomBlurFilter({})
+
+img.filters = [godrayFilter];
