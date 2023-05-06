@@ -136,7 +136,8 @@ class Panorama {
     geometry.scale(-1, 1, 1);
     const loader = new THREE.TextureLoader();
     const texture = loader.load(
-      "https://ics-creative.github.io/161208_panorama/common/images/image.jpg"
+      // "https://ics-creative.github.io/161208_panorama/common/images/image.jpg"
+      "./panorama.jpg"
     );
     const material = new THREE.MeshBasicMaterial({
       map: texture,
