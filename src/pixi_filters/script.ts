@@ -146,17 +146,69 @@ const godrayFilter = new GodrayFilter({
   center: [0, 0], // よく分からない
 });
 
-// const kawaseBlurFilter = new KawaseBlurFilter({})
-// const motionBlurFilter = new MotionBlurFilter({})
-// const oldFilmFilter = new OldFilmFilter({})
-// const pixelateFilter = new PixelateFilter({})
-// const radialBlurFilter = new RadialBlurFilter({})
-// const reflectionFilter = new ReflectionFilter({})
-// const rGBSplitFilter = new RGBSplitFilter({})
-// const shockwaveFilter = new ShockwaveFilter({})
-// const simpleLightmapFilter = new SimpleLightmapFilter({})
-// const tiltShiftFilter = new TiltShiftFilter({})
-// const twistFilter = new TwistFilter({})
-// const zoomBlurFilter = new ZoomBlurFilter({})
+const kawaseBlurFilter = new KawaseBlurFilter([10, 1], 3, false);
 
-img.filters = [godrayFilter];
+const motionBlurFilter = new MotionBlurFilter([40, 40], 10, 0);
+
+// 古いフィルム風
+const oldFilmFilter = new OldFilmFilter({
+  sepia: 0.5,
+  noise: 0.5,
+  noiseSize: 1,
+  scratch: 1,
+  scratchDensity: 0.3,
+  scratchWidth: 1,
+  vignetting: 0.3,
+  vignettingAlpha: 0.1,
+  vignettingBlur: 0.3,
+});
+
+const pixelateFilter = new PixelateFilter([10, 10]);
+
+const radialBlurFilter = new RadialBlurFilter(20, [300, 300], 5, 300);
+
+const reflectionFilter = new ReflectionFilter({
+  mirror: true,
+  boundary: 0.7,
+  amplitude: [0, 10],
+  waveLength: [20, 100],
+  alpha: [0, 1],
+  time: 0, // よく分からない
+});
+
+const rgbSplitFilter = new RGBSplitFilter([10, 0], [-10, 10], [0, 10]);
+
+const shockwaveFilter = new ShockwaveFilter(
+  [300, 300],
+  {
+    amplitude: 10,
+    wavelength: 10,
+    brightness: 3,
+    radius: 300,
+  },
+  0.3 // timeプロパティで全体の変化の割合の地点を指定できる？（このプロパティを変化させればアニメーションになる）
+);
+
+// 第一引数（texture）がよく分からないので飛ばす
+// https://github.com/pixijs/filters/blob/main/filters/simple-lightmap/src/SimpleLightmapFilter.ts#L31
+// const simpleLightmapFilter = new SimpleLightmapFilter()
+
+const tiltShiftFilter = new TiltShiftFilter({
+  blur: 50,
+  gradientBlur: 300,
+});
+
+const twistFilter = new TwistFilter({
+  angle: 20,
+  radius: 300,
+  padding: 50,
+  offset: new PIXI.Point(300, 300),
+});
+
+const zoomBlurFilter = new ZoomBlurFilter({
+  strength: 0.5,
+  center: [300, 300],
+  innerRadius: 0,
+});
+
+img.filters = [zoomBlurFilter];
