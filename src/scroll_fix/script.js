@@ -102,6 +102,7 @@ class CardItems {
       return;
     }
     // イージング量を返す関数（「t：アニメーションの経過時間」「b：始点」「c：変化量」「d：変化にかける時間」）
+    // https://noze.space/archives/432
     const easing = (t, b, c, d) => {
       return c * (t /= d) * t + b;
     };
