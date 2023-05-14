@@ -1,1 +1,0 @@
-{"version":3,"sources":["08_light_shadowmap\\style.scss"],"names":[],"mappings":"AAAA,OACE,oBAAA,CACA,qBAAA,CACA","file":"style.cc9c589f.css","sourceRoot":"..\\src","sourcesContent":["canvas {\r\n  width: 100% !important;\r\n  height: auto !important;\r\n  aspect-ratio: 16 / 9;\r\n}\r\n"]}

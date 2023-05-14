@@ -1,1 +1,0 @@
-{"version":3,"sources":["09_camera_variation\\style.scss"],"names":[],"mappings":"AAAA,OACE,oBAAA,CACA,qBAAA,CACA","file":"style.90871f0c.css","sourceRoot":"..\\src","sourcesContent":["canvas {\r\n  width: 100% !important;\r\n  height: auto !important;\r\n  aspect-ratio: 16 / 9;\r\n}\r\n"]}
