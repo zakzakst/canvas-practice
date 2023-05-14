@@ -1,15 +1,16 @@
-class TextItem {
+class LRItem {
   constructor() {
     // 要素
     this.containerScrollEl = document.querySelector(
-      "#scale-anim #container-scroll2"
+      "#lr-anim #container-scroll3"
     );
-    this.containerYEl = document.querySelector("#scale-anim #container-y2");
-    this.textEl = document.querySelector("#scale-anim #scale-text");
+    this.containerYEl = document.querySelector("#lr-anim #container-y3");
+    this.itemEls = document.querySelectorAll("#lr-anim #items3 .item3");
     // スクロール関数（removeEventListenerする目的）
     // https://log.tkyisgk.com/addeventlistener-this
     this.onScrollCallback = this.onScroll.bind(this);
-    this.maxScale = 80;
+    this.startRotate = 30;
+    this.endRotate = 3;
   }
 
   /**
@@ -73,8 +74,17 @@ class TextItem {
   onScroll() {
     // TODO: スクロール処理requestAnimationFrameで間引く
     const scrollProgress = this.getScrollProgress();
-    const scale = this.getTargetScale(scrollProgress);
-    this.textEl.style.transform = `scale(${scale})`;
+    [...this.itemEls].forEach((item, index) => {
+      const style = this.getTargetStyle(
+        scrollProgress,
+        this.itemEls.length,
+        index
+      );
+      item.querySelector(".card").style.opacity = style.opacity;
+      item.querySelector(
+        ".card"
+      ).style.transform = `rotate(${style.rotate}deg)`;
+    });
   }
 
   /**
@@ -104,16 +114,38 @@ class TextItem {
   }
 
   /**
-   * 目標拡大値の取得
+   * 目標変化量の取得
    * @param progress 進行割合
-   * @returns 目標拡大値
+   * @param itemLength 要素の総数
+   * @param index 要素の番号
+   * @returns { opacity, rotate } 目標変化量
    */
-  getTargetScale(progress) {
-    const arrangedProgress = progress > 1 ? 1 : progress < 0 ? 0 : progress;
-    const scale = 1 + (this.maxScale - 1) * arrangedProgress;
-    return scale;
+  getTargetStyle(progress, itemLength, index) {
+    const arrangedProgress = progress >= 1 ? 1 : progress <= 0 ? 0 : progress;
+    const indexRange = {
+      start: index / itemLength,
+      end: (index + 1) / itemLength,
+    };
+    const indexProgress =
+      indexRange.start > arrangedProgress
+        ? 0
+        : indexRange.end < arrangedProgress
+        ? 1
+        : (arrangedProgress - indexRange.start) /
+          (indexRange.end - indexRange.start);
+    // 透明度
+    const opacity = indexProgress;
+    // 角度（奇数と偶数で正負を変更）
+    const sign = index % 2 === 0 ? 1 : -1;
+    const rotate =
+      sign * this.startRotate -
+      (sign * this.startRotate - sign * this.endRotate) * indexProgress;
+    return {
+      opacity,
+      rotate,
+    };
   }
 }
 
-const textItem = new TextItem();
-textItem.init();
+const lRItem = new LRItem();
+lRItem.init();
