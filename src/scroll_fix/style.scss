@@ -3,7 +3,7 @@
 }
 
 .container-scroll {
-  height: 500vh;
+  height: 1000vh;
   // height: 5000px;
   background: linear-gradient(#fff, #888);
   position: relative;
@@ -23,4 +23,18 @@
   display: grid;
   grid-template-columns: repeat(8, 300px);
   gap: 24px;
+  transition: transform 0.2s ease-out;
+}
+
+#scale-anim .container-y {
+  justify-content: center;
+  line-height: 1;
+  user-select: none;
+}
+
+.scale-text {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  transition: transform 0.2s ease-out;
 }
