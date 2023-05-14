@@ -38,3 +38,37 @@
   text-align: center;
   transition: transform 0.2s ease-out;
 }
+
+.items3 {
+  position: absolute;
+  top: 0;
+  bottom: 40px;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.item3 {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  width: 300px;
+  margin: auto;
+  transform: translateY(-50%);
+  .card {
+    opacity: 0.5;
+    transform-origin: center 400%;
+    transition: transform 0.2s ease-out;
+  }
+  &:nth-child(odd) {
+    .card {
+      transform: rotate(30deg);
+    }
+  }
+  &:nth-child(even) {
+    .card {
+      transform: rotate(-30deg);
+    }
+  }
+}
