@@ -1,0 +1,26 @@
+.spacer {
+  height: 1000px;
+}
+
+.container-scroll {
+  height: 500vh;
+  // height: 5000px;
+  background: linear-gradient(#fff, #888);
+  position: relative;
+}
+
+.container-y {
+  top: 0;
+  position: sticky;
+  height: 100vh;
+  background: rgba(255, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(8, 300px);
+  gap: 24px;
+}
