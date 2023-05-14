@@ -15,7 +15,7 @@
     "dev": "parcel src/scroll_fix/*.html",
     "dev2": "parcel src/22_math/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
-    "build2": "parcel build src/panorama/*.html",
+    "build2": "parcel build src/scroll_fix/*.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
