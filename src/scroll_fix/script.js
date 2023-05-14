@@ -3,10 +3,12 @@
 class CardItems {
   constructor() {
     // 要素
-    this.containerScrollEl = document.querySelector("#container-scroll");
-    this.containerYEl = document.querySelector("#container-y");
-    this.containerXEl = document.querySelector("#container-x");
-    this.itemsEl = document.querySelector("#items");
+    this.containerScrollEl = document.querySelector(
+      "#card-anim #container-scroll"
+    );
+    this.containerYEl = document.querySelector("#card-anim #container-y");
+    this.containerXEl = document.querySelector("#card-anim #container-x");
+    this.itemsEl = document.querySelector("#card-anim #items");
     // スクロール関数（removeEventListenerする目的）
     // https://log.tkyisgk.com/addeventlistener-this
     this.onScrollCallback = this.onScroll.bind(this);
@@ -29,6 +31,7 @@ class CardItems {
    */
   init() {
     this.initObserver();
+    document.addEventListener("resize", this.onScrollCallback);
   }
 
   /**
@@ -83,12 +86,14 @@ class CardItems {
     const scrollProgress = this.getScrollProgress();
     // 目標位置とイージング開始時間を更新し、移動中でなければ移動処理を発火
     this.targetPosition = this.getTargetPosition(scrollProgress);
-    // TODO: requestAnimationFrameの引数でtimestamp渡せるっぽい。こっちでやった方がスマートか？
-    // https://coding-memo.work/javascript/895/
-    this.easingStart = Date.now();
-    if (!this.isMoving) {
-      this.moveToTargetPosition();
-    }
+    this.itemsEl.style.transform = `translateX(${this.targetPosition}px)`;
+    // TODO: イージング上手くいかない、イージングなしでもいい感じの動きな気がするから一旦これで対応
+    // // TODO: requestAnimationFrameの引数でtimestamp渡せるっぽい。こっちでやった方がスマートか？
+    // // https://coding-memo.work/javascript/895/
+    // this.easingStart = Date.now();
+    // if (!this.isMoving) {
+    //   this.moveToTargetPosition();
+    // }
   }
 
   /**
@@ -151,9 +156,14 @@ class CardItems {
    * @returns 目標位置
    */
   getTargetPosition(progress) {
-    const containerWidth = this.containerYEl.clientWidth;
-    const itemsWidth = this.itemsEl.clientWidth;
-    const position = (itemsWidth - containerWidth) * progress;
+    const arrangedProgress = progress > 1 ? 1 : progress < 0 ? 0 : progress;
+    // NOTE: overflowの関係か幅取得上手くいかない（SP表示の時に）そのための対応
+    const containerWidth =
+      this.containerXEl.clientWidth >= document.body.clientWidth
+        ? document.body.clientWidth
+        : this.containerXEl.clientWidth;
+    const itemsWidth = this.itemsEl.scrollWidth;
+    const position = -(itemsWidth - containerWidth) * arrangedProgress;
     return position;
   }
 }
