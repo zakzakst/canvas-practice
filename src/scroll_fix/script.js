@@ -39,6 +39,7 @@ class CardItems {
    */
   initObserver() {
     // スクロール範囲がwindowを覆ったタイミングでスクロールイベントの出し分けを行う
+    // TODO: リサイズのタイミングでこの値も更新しないとNG?
     const threshold = window.innerHeight / this.containerScrollEl.clientHeight;
     const options = {
       root: null,
