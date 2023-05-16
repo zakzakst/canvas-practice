@@ -110,6 +110,7 @@ class TextItem {
    * @returns 目標拡大値
    */
   getTargetScale(progress) {
+    // TODO: arrangedProgressでやっていることはgetScrollProgressに移動したほうがいいか
     const arrangedProgress = progress > 1 ? 1 : progress < 0 ? 0 : progress;
     const scale = 1 + (this.maxScale - 1) * arrangedProgress;
     return scale;

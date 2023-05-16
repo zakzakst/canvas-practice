@@ -122,6 +122,7 @@ class LRItem {
    * @returns { opacity, rotate } 目標変化量
    */
   getTargetStyle(progress, itemLength, index) {
+    // TODO: arrangedProgressでやっていることはgetScrollProgressに移動したほうがいいか
     const arrangedProgress = progress >= 1 ? 1 : progress <= 0 ? 0 : progress;
     const indexRange = {
       start: index / itemLength,

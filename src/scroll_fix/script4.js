@@ -110,6 +110,7 @@ class RotateText {
    * @returns deg 目標変化角度
    */
   getTargetDeg(progress) {
+    // TODO: arrangedProgressでやっていることはgetScrollProgressに移動したほうがいいか
     const arrangedProgress = progress > 1 ? 1 : progress < 0 ? 0 : progress;
     const deg = 360 * arrangedProgress;
     return deg;

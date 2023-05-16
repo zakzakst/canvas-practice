@@ -157,6 +157,7 @@ class CardItems {
    * @returns 目標位置
    */
   getTargetPosition(progress) {
+    // TODO: arrangedProgressでやっていることはgetScrollProgressに移動したほうがいいか
     const arrangedProgress = progress > 1 ? 1 : progress < 0 ? 0 : progress;
     // NOTE: overflowの関係か幅取得上手くいかない（SP表示の時に）そのための対応
     const containerWidth =
