@@ -1,9 +1,89 @@
-svg {
+.wrapper {
+  position: relative;
   width: 800px;
+  .char {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    transform: rotate(-45deg);
+    font-size: 120px;
+    font-weight: bold;
+    animation: switchChar 2s step-end infinite;
+  }
+}
 
-  > path {
-    fill: none;
+.svg {
+  width: 100%;
+  .mask {
+    > path {
+      stroke-width: 20px;
+      position: relative;
+      animation: switchMask 2s step-end infinite;
+      &:nth-child(even) {
+        animation-delay: 1s;
+      }
+    }
+  }
+
+  .base {
+    > path {
+      fill: black;
+      animation: switchBase 2s step-end infinite;
+      &:nth-child(even) {
+        animation-delay: 1s;
+      }
+    }
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes switchChar {
+  0% {
+    left: 0;
+    right: auto;
+    transform: rotate(-45deg);
+  }
+  50% {
+    left: auto;
+    right: 0;
+    transform: rotate(45deg);
+  }
+  100% {
+    left: auto;
+    right: 0;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes switchMask {
+  0% {
+    fill: transparent;
+    stroke: transparent;
+  }
+  50% {
+    fill: white;
     stroke: #000;
-    stroke-width: 5px;
+  }
+  100% {
+    fill: white;
+    stroke: #000;
+  }
+}
+
+@keyframes switchBase {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
   }
 }
