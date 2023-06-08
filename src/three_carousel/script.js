@@ -9,6 +9,8 @@ class ThreeCarousel {
   scene;
   breakpoint;
   fov;
+  group;
+  spheres;
 
   constructor() {
     this.canvasEl = document.getElementById("canvas");
@@ -17,19 +19,62 @@ class ThreeCarousel {
     this.scene = new THREE.Scene();
     this.breakpoint = 768;
     this.fov = {
-      sp: 55,
-      pc: 75,
+      sp: 45,
+      pc: 60,
     };
+    this.spheres = [];
   }
 
   init() {
+    this.setGroup();
     this.setSphere();
     this.setLight();
     this.setCamera();
     this.setRenderer();
+    this.setGrid();
     this.renderer.render(this.scene, this.camera);
     // 描画開始
     this.render();
+  }
+
+  /**
+   * グループ設定
+   */
+  setGroup() {
+    this.group = new THREE.Group();
+    this.scene.add(this.group);
+  }
+
+  /**
+   * 球体設定
+   */
+  setSphere() {
+    const length = 12;
+    for (let i = 0; i < length; i++) {
+      // const geometry = new THREE.SphereGeometry(30, 30, 30);
+      const geometry = new THREE.BoxGeometry(30, 30, 30);
+      geometry.scale(-1, 1, 1);
+      const loader = new THREE.TextureLoader();
+      // const texture = loader.load(
+      //   // "https://ics-creative.github.io/161208_panorama/common/images/image.jpg"
+      //   "earthmap.jpg"
+      // );
+      // const material = new THREE.MeshBasicMaterial({
+      //   map: texture,
+      // });
+      const material = new THREE.MeshNormalMaterial();
+      const sphere = new THREE.Mesh(geometry, material);
+      const radian = (i / length) * Math.PI * 2;
+      const radius = 200;
+      sphere.position.set(
+        radius * Math.cos(radian),
+        60,
+        radius * Math.sin(radian)
+      );
+      sphere.rotation.y = Math.cos(radian);
+      this.spheres.push(sphere);
+      this.group.add(sphere);
+    }
   }
 
   /**
@@ -37,13 +82,9 @@ class ThreeCarousel {
    */
   setCamera() {
     const fov = this.getDeviceType() === "pc" ? this.fov.pc : this.fov.sp;
-    this.camera = new THREE.PerspectiveCamera(
-      fov,
-      this.width / this.height,
-      10,
-      2000
-    );
-    this.camera.position.set(0, 0, +7500);
+    this.camera = new THREE.PerspectiveCamera(fov, this.width / this.height);
+    this.camera.position.set(0, 90, 300);
+    this.camera.lookAt(new THREE.Vector3(0, 0, 0));
     this.scene.add(this.camera);
   }
 
@@ -67,37 +108,21 @@ class ThreeCarousel {
   }
 
   /**
-   * 球体設定
+   * グリッド設定
    */
-  setSphere() {
-    const length = 90;
-    for (let i = 0; i < length; i++) {
-      const geometry = new THREE.SphereGeometry(200, 30, 30);
-      geometry.scale(-1, 1, 1);
-      const loader = new THREE.TextureLoader();
-      const texture = loader.load(
-        "https://ics-creative.github.io/161208_panorama/common/images/image.jpg"
-        // "./panorama.jpg"
-      );
-      const material = new THREE.MeshBasicMaterial({
-        map: texture,
-      });
-      const sphere = new THREE.Mesh(geometry, material);
-      const radian = (i / length) * Math.PI * 2;
-      const radius = 6500;
-      sphere.position.set(
-        radius * Math.cos(radian),
-        0,
-        radius * Math.sin(radian)
-      );
-      this.scene.add(sphere);
-    }
+  setGrid() {
+    this.scene.add(new THREE.GridHelper(600));
+    this.scene.add(new THREE.AxesHelper(600));
   }
 
   /**
    * 画面描画
    */
   render() {
+    // this.spheres.forEach((sphere) => {
+    //   sphere.rotation.y -= 0.002;
+    // });
+    this.group.rotation.y += 0.002;
     requestAnimationFrame(this.render.bind(this));
     this.renderer.render(this.scene, this.camera);
   }
