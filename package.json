@@ -12,7 +12,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/fukidashi_anim/*.html",
+    "dev": "parcel src/three_carousel/*.html",
     "dev2": "parcel src/22_math/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "build2": "parcel build src/clip_path/*.html --public-url /canvas-practice/",
