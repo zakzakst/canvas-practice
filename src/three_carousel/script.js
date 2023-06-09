@@ -15,7 +15,7 @@ class ThreeCarousel {
   constructor() {
     this.canvasEl = document.getElementById("canvas");
     this.width = window.innerWidth;
-    this.height = 400;
+    this.height = 600;
     this.scene = new THREE.Scene();
     this.breakpoint = 768;
     this.fov = {
@@ -40,6 +40,7 @@ class ThreeCarousel {
   /**
    * グループ設定
    */
+  // グループを回転させると上手くいかない？
   setGroup() {
     this.group = new THREE.Group();
     this.scene.add(this.group);
@@ -52,7 +53,7 @@ class ThreeCarousel {
     const length = 12;
     for (let i = 0; i < length; i++) {
       // const geometry = new THREE.SphereGeometry(30, 30, 30);
-      const geometry = new THREE.BoxGeometry(30, 30, 30);
+      const geometry = new THREE.BoxGeometry(60, 60, 60);
       geometry.scale(-1, 1, 1);
       const loader = new THREE.TextureLoader();
       // const texture = loader.load(
@@ -68,10 +69,10 @@ class ThreeCarousel {
       const radius = 200;
       sphere.position.set(
         radius * Math.cos(radian),
-        60,
+        0,
         radius * Math.sin(radian)
       );
-      sphere.rotation.y = Math.cos(radian);
+      // sphere.rotation.x = -Math.sin(radian);
       this.spheres.push(sphere);
       this.group.add(sphere);
     }
@@ -82,8 +83,16 @@ class ThreeCarousel {
    */
   setCamera() {
     const fov = this.getDeviceType() === "pc" ? this.fov.pc : this.fov.sp;
-    this.camera = new THREE.PerspectiveCamera(fov, this.width / this.height);
-    this.camera.position.set(0, 90, 300);
+    // this.camera = new THREE.PerspectiveCamera(fov, this.width / this.height);
+    this.camera = new THREE.OrthographicCamera(
+      -1000,
+      +1000,
+      500,
+      -500,
+      1,
+      1000
+    );
+    this.camera.position.set(0, 100, 300);
     this.camera.lookAt(new THREE.Vector3(0, 0, 0));
     this.scene.add(this.camera);
   }
