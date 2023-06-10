@@ -20,6 +20,7 @@
       - 服の着せ替え
       - 3 重のレイヤー
     -->
+    <!-- https://code-pocket.info/20190527187/ -->
     <main class="main">
       <div class="spacer">スクロール用の余白</div>
 
@@ -27,51 +28,81 @@
       <div class="dressing-up">
         <div class="dressing-up__bg">
           <div class="dressing-up__bg-item">
-            <!-- <img src="https://picsum.photos/id/237/800/800" alt="" /> -->
             <img src="./img/scroll-fix-2/dressing-up-1.jpg" alt="" />
           </div>
           <div class="dressing-up__bg-item" id="js-dressing-up-bg-item-2">
-            <!-- <img src="https://picsum.photos/id/238/800/800" alt="" /> -->
             <img src="./img/scroll-fix-2/dressing-up-2.jpg" alt="" />
           </div>
           <div class="dressing-up__bg-item" id="js-dressing-up-bg-item-3">
-            <!-- <img src="https://picsum.photos/id/239/800/800" alt="" /> -->
             <img src="./img/scroll-fix-2/dressing-up-3.jpg" alt="" />
           </div>
         </div>
         <div class="container is-max-desktop">
           <section class="section dressing-up__content">
             <div class="dressing-up__item">
-              <!-- <p class="has-text-centered">着せ替え1枚目</p> -->
+              <p class="has-text-centered has-text-danger">着せ替え1枚目</p>
             </div>
             <div class="dressing-up__item" id="js-dressing-up-item-2">
-              <!-- <p class="has-text-centered">着せ替え2枚目</p> -->
+              <p class="has-text-centered has-text-danger">着せ替え2枚目</p>
             </div>
             <div class="dressing-up__item" id="js-dressing-up-item-3">
-              <!-- <p class="has-text-centered">着せ替え3枚目</p> -->
+              <p class="has-text-centered has-text-danger">着せ替え3枚目</p>
             </div>
           </section>
         </div>
       </div>
       <!-- ▲▲▲ 着せ替え ▲▲▲ -->
 
+      <!-- ▼▼▼ 回遊 ▼▼▼ -->
+      <div class="walk-through">
+        <div class="walk-through__bg">
+          <div class="walk-through__bg-imgs">
+            <div class="walk-through__bg-img">
+              <!-- <img src="https://picsum.photos/id/237/800/800" alt="" /> -->
+              <img src="./img/scroll-fix-2/walk-through.jpg" alt="" />
+            </div>
+            <div class="walk-through__bg-img">
+              <!-- <img src="https://picsum.photos/id/237/800/800" alt="" /> -->
+              <img src="./img/scroll-fix-2/walk-through.jpg" alt="" />
+            </div>
+            <div class="walk-through__bg-img">
+              <!-- <img src="https://picsum.photos/id/237/800/800" alt="" /> -->
+              <img src="./img/scroll-fix-2/walk-through.jpg" alt="" />
+            </div>
+          </div>
+          <div class="walk-through__bg-movie">
+            <!-- <img src="https://picsum.photos/id/238/800/800" alt="" /> -->
+            <video
+              id="test"
+              muted
+              src="./img/scroll-fix-2/vroffice.mp4"
+            ></video>
+            <!-- <video
+              id="test"
+              muted
+              src="./img/scroll-fix-2/walk-through.mov"
+            ></video> -->
+          </div>
+        </div>
+        <div class="container is-max-desktop">
+          <section class="section walk-through__content">
+            <div class="walk-through__item" id="js-walk-through-item-1">
+              <p class="has-text-centered has-text-danger">回遊変化1</p>
+            </div>
+            <div class="walk-through__item" id="js-walk-through-item-2">
+              <p class="has-text-centered has-text-danger">回遊変化2</p>
+            </div>
+          </section>
+        </div>
+      </div>
+      <!-- ▲▲▲ 回遊 ▲▲▲ -->
+
       <div class="spacer">スクロール用の余白</div>
     </main>
     <script src="./script.js"></script>
-    <!-- <script src="./script2.js"></script>
-    <script src="./script3.js"></script>
-    <script src="./script4.js"></script> -->
+    <script src="./script2.js"></script>
     <style>
-      /* #card-anim {
-        display: none;
-      }
-      #scale-anim {
-        display: none;
-      }
-      #lr-anim {
-        display: none;
-      }
-      #rotate-anim {
+      /* .dressing-up {
         display: none;
       } */
     </style>
