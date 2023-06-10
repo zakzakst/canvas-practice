@@ -1,0 +1,48 @@
+.spacer {
+  height: 1000px;
+  text-align: center;
+}
+
+.dressing-up {
+  position: relative;
+}
+
+.dressing-up__bg {
+  position: sticky;
+  top: 0;
+  background: #000;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.dressing-up__bg-item {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  &:nth-child(n + 2) {
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    // clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    transform: scale(1.5);
+  }
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.dressing-up__content {
+  margin-top: -100vh;
+}
+
+.dressing-up__item {
+  position: relative;
+  height: 300vh;
+  color: white;
+  z-index: 1;
+  &:first-child {
+    height: 100vh;
+  }
+}

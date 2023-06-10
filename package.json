@@ -12,7 +12,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/three_carousel/*.html",
+    "dev": "parcel src/scroll_fix_2/*.html",
     "dev2": "parcel src/22_math/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "build2": "parcel build src/clip_path/*.html --public-url /canvas-practice/",
@@ -31,6 +31,7 @@
   "dependencies": {
     "@studio-freight/lenis": "^1.0.12",
     "animejs": "^3.2.1",
+    "gsap": "^3.12.1",
     "pixi-filters": "^5.2.1",
     "pixi.js": "^7.2.4",
     "stats-js": "^1.0.1",
