@@ -4,10 +4,33 @@ const stageEl = document.getElementById("stage");
 const stageWidth = 800;
 const stageHeight = 450;
 
+const markersList = [
+  {
+    id: 1,
+    position: [100, 100],
+    item: null,
+  },
+  {
+    id: 2,
+    position: [500, -100],
+    item: null,
+  },
+  {
+    id: 3,
+    position: [-500, 500],
+    item: null,
+  },
+  {
+    id: 4,
+    position: [500, 300],
+    item: null,
+  },
+];
+
 /**
  * レンダラー初期化
  */
-const threeRenderer = new THREE.WebGLRenderer();
+const threeRenderer = new THREE.WebGLRenderer({ alpha: true });
 threeRenderer.setSize(stageWidth, stageHeight);
 threeRenderer.setPixelRatio(window.devicePixelRatio);
 threeRenderer.setClearColor({
@@ -54,8 +77,56 @@ const makeIsland = () => {
     side: THREE.DoubleSide,
   });
   const island = new THREE.Mesh(geometry, material);
-  island.position.set(0, 50, 0);
+  island.position.set(0, -50, 0);
   threeScene.add(island);
+};
+
+/**
+ * マーカーを作成
+ */
+const makeMarker = () => {
+  const thickness = 10;
+  const material = new THREE.MeshStandardMaterial({
+    color: 0xff0000,
+    side: THREE.DoubleSide,
+    // transparent: true,
+    // opacity: 0.5,
+  });
+  // ベース部分を作成
+  const base = new THREE.Mesh(
+    new THREE.CylinderGeometry(50, 50, thickness, 32),
+    material
+  );
+  // 矢印部分を作成
+  const arrow = new THREE.Mesh(
+    new THREE.BoxGeometry(50, thickness, 50),
+    material
+  );
+  arrow.position.set(0, 0, 30);
+  arrow.rotation.y = Math.PI / 4;
+  // ベースと矢印をまとめて位置を調整
+  const group = new THREE.Group();
+  group.add(base);
+  group.add(arrow);
+  group.rotation.x = Math.PI / 2;
+  group.position.set(0, 70, 0);
+  // マーカーとしてまとめる
+  const marker = new THREE.Group();
+  marker.add(group);
+  return marker;
+};
+
+/**
+ * マーカーを配置
+ */
+const makeMarkers = () => {
+  markersList.forEach((marker) => {
+    const item = new makeMarker();
+    item.position.x = marker.position[0];
+    item.position.z = marker.position[1];
+    marker.item = item;
+    threeScene.add(item);
+  });
 };
 
 /**
@@ -69,11 +140,13 @@ function renderScene() {
  * カメラの位置・向き設定
  */
 function setCameraPos() {
+  // threeCamera.position.set(100, 100, 200);
+  // threeCamera.position.set(200, 300, 200);
   threeCamera.position.set(0, 1000, 2000);
   threeCamera.lookAt(new THREE.Vector3(0, 0, 0));
 }
 
 makeIsland();
+makeMarkers();
 setCameraPos();
 renderScene();
-console.log("test");
