@@ -26,6 +26,7 @@ const markersList = [
     item: null,
   },
 ];
+const markerMeshesList = [];
 
 /**
  * レンダラー初期化
@@ -66,6 +67,12 @@ threeScene.add(new THREE.DirectionalLightHelper(threeLight));
  */
 threeScene.add(new THREE.GridHelper(2000));
 threeScene.add(new THREE.AxesHelper(1000));
+
+/**
+ * 交差判定初期化
+ */
+const threeRayCaster = new THREE.Raycaster();
+const threeMousePos = new THREE.Vector2();
 
 /**
  * 島を作成
@@ -126,8 +133,45 @@ const makeMarkers = () => {
     item.position.z = marker.position[1];
     marker.item = item;
     threeScene.add(item);
+    markerMeshesList.push(item);
   });
 };
+
+/**
+ * マウス移動時の処理
+ */
+const onMouseMoveHandler = () => {
+  stageEl.addEventListener("mousemove", (e) => {
+    const element = e.currentTarget;
+    const x = e.clientX - element.offsetLeft;
+    const y = e.clientY - element.offsetTop;
+    const w = element.offsetWidth;
+    const h = element.offsetHeight;
+    threeMousePos.x = (x / w) * 2 - 1;
+    threeMousePos.y = -(y / h) * 2 + 1;
+    updateIntersects();
+  });
+};
+
+/**
+ * 交差判定更新
+ */
+function updateIntersects() {
+  threeRayCaster.setFromCamera(threeMousePos, threeCamera);
+  const intersects = threeRayCaster.intersectObjects(markerMeshesList);
+  // TODO: 調べるグループの交差判定
+  // console.log(markerMeshesList);
+
+  markerMeshesList.forEach((mesh) => {
+    if (intersects.length > 0 && mesh === intersects[0].object) {
+      // 交差している場合
+      stageEl.classList.add("--on-marker");
+    } else {
+      // 交差していない場合
+      stageEl.classList.remove("--on-marker");
+    }
+  });
+}
 
 /**
  * 描画
@@ -150,3 +194,4 @@ makeIsland();
 makeMarkers();
 setCameraPos();
 renderScene();
+onMouseMoveHandler();
