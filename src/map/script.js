@@ -26,7 +26,7 @@ const markersList = [
     item: null,
   },
 ];
-const markerMeshesList = [];
+const markerGroupsList = [];
 
 /**
  * レンダラー初期化
@@ -117,10 +117,7 @@ const makeMarker = () => {
   group.add(arrow);
   group.rotation.x = Math.PI / 2;
   group.position.set(0, 70, 0);
-  // マーカーとしてまとめる
-  const marker = new THREE.Group();
-  marker.add(group);
-  return marker;
+  return group;
 };
 
 /**
@@ -133,7 +130,7 @@ const makeMarkers = () => {
     item.position.z = marker.position[1];
     marker.item = item;
     threeScene.add(item);
-    markerMeshesList.push(item);
+    markerGroupsList.push(item);
   });
 };
 
@@ -158,19 +155,35 @@ const onMouseMoveHandler = () => {
  */
 function updateIntersects() {
   threeRayCaster.setFromCamera(threeMousePos, threeCamera);
-  const intersects = threeRayCaster.intersectObjects(markerMeshesList);
-  // TODO: 調べるグループの交差判定
-  // console.log(markerMeshesList);
+  const intersects = threeRayCaster.intersectObjects(markerGroupsList);
 
-  markerMeshesList.forEach((mesh) => {
-    if (intersects.length > 0 && mesh === intersects[0].object) {
-      // 交差している場合
-      stageEl.classList.add("--on-marker");
-    } else {
-      // 交差していない場合
-      stageEl.classList.remove("--on-marker");
+  let isIntersect = false;
+  let intersectGroupIndex = null;
+
+  markerGroupsList.forEach((group, groupIndex) => {
+    if (intersects.length) {
+      // NOTE:グループ自体では交差判定できないため、各子要素を利用して判定する
+      group.children.forEach((child) => {
+        const intersectChild = intersects.find(
+          (intersect) => child === intersect.object
+        );
+        if (intersectChild) {
+          isIntersect = true;
+          intersectGroupIndex = groupIndex;
+        }
+      });
     }
   });
+
+  if (isIntersect && intersectGroupIndex) {
+    console.log("交差");
+    // 交差している場合
+    stageEl.classList.add("--on-marker");
+  } else {
+    console.log("交差してない");
+    // 交差していない場合
+    stageEl.classList.remove("--on-marker");
+  }
 }
 
 /**
