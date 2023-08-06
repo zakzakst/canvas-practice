@@ -11,7 +11,7 @@ export default class Cover extends HTMLElement {
       this.dataset.i = this.i;
       if (!document.getElementById(this.i)) {
         let styleEl = document.createElement("style");
-        styleEl.i = this.i;
+        styleEl.id = this.i;
         styleEl.innerHTML = `
           [data-i="${this.i}"] {
             min-height: ${this.minHeight};
