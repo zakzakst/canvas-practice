@@ -11,7 +11,7 @@
 // }
 
 // requestAnimationFrame(raf);
-
+console.log("test");
 const lenis = new Lenis();
 const raf = (time) => {
   lenis.raf(time);
