@@ -13,4 +13,5 @@
   --s5: calc(var(--s4) * var(--ratio));
 
   --color-light: #eee;
+  --measure: 40ch;
 }
