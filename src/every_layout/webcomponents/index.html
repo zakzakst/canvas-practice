@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      p {
+        color: red !important;
+      }
+    </style>
+  </head>
+  <body>
+    <template id="component-template">
+      <div>
+        <slot name="title">デフォルトタイトル</slot>
+        <slot name="subtitle">デフォルトサブタイトル</slot>
+        <p>
+          テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+        </p>
+      </div>
+      <style>
+        p {
+          color: blue;
+        }
+      </style>
+    </template>
+    <my-component color="#ff0">
+      <p slot="title">タイトル</p>
+    </my-component>
+    <script type="module" src="./webcomponents.js"></script>
+  </body>
+</html>
