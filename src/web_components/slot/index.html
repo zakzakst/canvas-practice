@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <!-- <link rel="stylesheet" href="./style.scss" /> -->
+  </head>
+  <body>
+    <user-card>
+      <div>I like to swim.</div>
+      <span slot="username">John Smith</span>
+      <span slot="birthday">01.01.2001</span>
+      <div>...And play volleyball too!</div>
+    </user-card>
+    <!-- <script src="./script.ts"></script> -->
+    <script>
+      customElements.define(
+        "user-card",
+        class extends HTMLElement {
+          connectedCallback() {
+            this.attachShadow({ mode: "open" });
+            this.shadowRoot.innerHTML = `
+            <div>Name:
+              <slot name="username" />
+            </div>
+            <div>Birthday:
+              <slot name="birthday" />
+            </div>
+            <fieldset>
+              <legend>Other information</legend>
+              <slot />
+            </fieldset>
+          `;
+          }
+        }
+      );
+    </script>
+
+    <template id="tmpl">
+      <style>
+        .menu {
+          background-color: #f00;
+        }
+        .menu.closed {
+          background-color: #eee;
+        }
+      </style>
+      <div class="menu">
+        <slot name="title">Default Title</slot>
+        <ul>
+          <slot name="item" />
+        </ul>
+      </div>
+    </template>
+
+    <custom-menu id="menu">
+      <h3 slot="title">Candy menu</h3>
+      <li slot="item">Lollipop</li>
+      <li slot="item">Fruit Toast</li>
+      <li slot="item">Cup Cake</li>
+    </custom-menu>
+
+    <script>
+      customElements.define(
+        "custom-menu",
+        class extends HTMLElement {
+          connectedCallback() {
+            this.attachShadow({ mode: "open" });
+            this.shadowRoot.append(tmpl.content.cloneNode(true));
+            this.shadowRoot.querySelector('slot[name="title"]').onclick =
+              () => {
+                this.shadowRoot
+                  .querySelector(".menu")
+                  .classList.toggle("closed");
+              };
+
+            // light DOM ノードはコピーではなく、単にスロットにレンダリングされるだけなので、その内部での変更はすぐに見えます。したがって、レンダリングを更新するために必要なことはありません。ですが、コンポーネントのコードがスロットの変更を知りたい場合には slotchange イベントが利用できます。
+            this.shadowRoot
+              .querySelector(".menu")
+              .addEventListener("slotchange", (e) => {
+                // alert("slotchange: " + e.target.name);
+                console.log(e.target.name);
+              });
+          }
+        }
+      );
+
+      setTimeout(() => {
+        menu.insertAdjacentHTML("beforeEnd", '<li slot="item">Lollipop</li>');
+      }, 1000);
+
+      setTimeout(() => {
+        // 2秒後に slot="title" の中身が変更されたとき slotchange イベントは発生しません。これはスロットの変更がないためです。スロット要素内のコンテンツを変更していますが、それば別のことです。
+        menu.querySelector('[slot="title"]').innerHTML = "New menu";
+      }, 2000);
+    </script>
+  </body>
+</html>
