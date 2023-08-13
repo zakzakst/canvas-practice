@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <!-- <link rel="stylesheet" href="./style.scss" /> -->
+  </head>
+  <body>
+    <button is="hello-button">test</button>
+    <button is="hello-button" disabled>test2</button>
+    <script>
+      class HelloButton extends HTMLButtonElement {
+        constructor() {
+          super();
+          this.addEventListener("click", () => alert("Hello!"));
+        }
+      }
+      customElements.define("hello-button", HelloButton, { extends: "button" });
+    </script>
+  </body>
+</html>
