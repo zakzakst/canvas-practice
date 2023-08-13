@@ -12,7 +12,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/web_components/custom_elements/index.html",
+    "dev": "parcel src/web_components/shadow_dom/index.html",
     "dev2": "parcel src/22_math/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "build2": "parcel build src/scroll_fix_2/index.html --public-url /canvas-practice/",
