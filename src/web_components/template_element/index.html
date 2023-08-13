@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <!-- <link rel="stylesheet" href="./style.scss" /> -->
+  </head>
+  <body>
+    <template id="tmpl">
+      <style>
+        p {
+          font-weight: bold;
+        }
+      </style>
+      <p id="message"></p>
+    </template>
+
+    <div id="elem">Click me</div>
+    <!-- https://ja.javascript.info/web-components -->
+    <!-- <script src="./script.ts"></script> -->
+    <script>
+      elem.onclick = () => {
+        elem.attachShadow({ mode: "open" });
+        elem.shadowRoot.append(tmpl.content.cloneNode(true));
+        elem.shadowRoot.getElementById("message").innerHTML =
+          "Hello from the shadows!";
+      };
+    </script>
+  </body>
+</html>
