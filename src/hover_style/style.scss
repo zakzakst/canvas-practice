@@ -1,0 +1,23 @@
+// マウス（正確には、ホバーができる入力手段かどうか）を区別するには、 hover メディア特性を使用します。
+@media (hover: hover) {
+  // :any-link 擬似クラスは、href 属性がある a 要素（と、area 要素）にのみマッチするセレクタです。
+  /* リンクの場合 */
+  a:any-link:hover {
+    background: #f00;
+  }
+
+  // :not(:disabled) でもいいように見えますが、この書き方ではそもそも disabled の概念が存在しない要素（div や span など）が対象になってしまいます。:enabled は disabled/enabled の概念がある要素のみが対象になります。
+  /* ボタンの場合 */
+  button:enabled:hover {
+    background: #0f0;
+  }
+
+  // あるクラスが、a 要素に設定されるかもしれないし、button 要素に設定されるかもしれないし、summary 要素に設定されるかもしれないという場合は、次のように書くことができます。
+  .button:where(:any-link, :enabled, summary):hover {
+    background: #00f;
+  }
+
+  .button:where(.test):hover {
+    background: #000;
+  }
+}
