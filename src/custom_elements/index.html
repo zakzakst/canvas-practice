@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <!-- <link rel="stylesheet" href="./style.scss" /> -->
+    <script type="module" src="./script.js"></script>
+  </head>
+  <body>
+    <dialog space="3rem" is="my-dialog" id="dialog">
+      <p>test</p>
+      <p>test</p>
+    </dialog>
+
+    <button id="button">開く</button>
+
+    <!-- <script src="./script.ts"></script> -->
+    <script>
+      const dialogEl = document.querySelector("#dialog");
+      const buttonEl = document.querySelector("#button");
+
+      buttonEl.addEventListener("click", () => {
+        dialogEl.showModal();
+      });
+    </script>
+  </body>
+</html>
