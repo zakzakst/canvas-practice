@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <!-- <link rel="stylesheet" href="./style.scss" /> -->
+  </head>
+  <body>
+    <show-hello name="John"></show-hello>
+    <!-- <script src="./script.ts"></script> -->
+    <script>
+      customElements.define(
+        "show-hello",
+        class extends HTMLElement {
+          connectedCallback() {
+            // "open" – shadow root は elem.shadowRoot として利用可能です。任意のコードが elem の shadow tree にアクセスすることができます。
+            // "closed" – elem.shadowRoot は常に null です。
+            const shadow = this.attachShadow({ mode: "open" });
+            shadow.innerHTML = `<p>
+            Hello, ${this.getAttribute("name")}
+          </p>`;
+          }
+        }
+      );
+    </script>
+  </body>
+</html>
