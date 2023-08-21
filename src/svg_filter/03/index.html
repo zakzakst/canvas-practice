@@ -11,6 +11,38 @@
   <body>
     <!-- https://codepen.io/ktaftaf/pen/pbLOWg -->
 
-    <script src="./script.ts"></script>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svg-sprite">
+      <defs>
+        <filter id="filter">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.000001 0.000001"
+            numOctaves="1"
+            result="warp"
+            seed="1"
+          />
+          <feDisplacementMap
+            xChannelSelector="R"
+            yChannelSelector="G"
+            scale="30"
+            in="SourceGraphic"
+            in2="warp"
+          />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="body-section">
+      <div class="half">
+        <div class="btn btn-small btn-dark btn-glitch">Bitch'n</div>
+      </div>
+      <div class="half dark">
+        <div class="btn btn-small btn-clear btn-light btn-glitch">Glitch'n</div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
