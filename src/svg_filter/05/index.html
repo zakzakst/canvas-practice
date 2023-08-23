@@ -10,7 +10,27 @@
   </head>
   <body>
     <!-- https://aguije.jp/ -->
+    <svg id="filters">
+      <filter id="textNoise">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="1.5"
+          numOctaves="5"
+          result="warp"
+        />
+        <feDisplacementMap
+          xChannelSelector="R"
+          yChannelSelector="G"
+          scale="90"
+          in="SourceGraphic"
+          in2="warp"
+        />
+      </filter>
+    </svg>
 
-    <script src="./script.ts"></script>
+    <h2><span class="noise">Works</span></h2>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
