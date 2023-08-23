@@ -1,0 +1,145 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600);
+body {
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 100%;
+  background: #454f4f;
+}
+a {
+  color: #a1c3d1;
+}
+a:hover,
+a:focus {
+  color: #9eefe1;
+}
+.duotone-filters {
+  height: 0;
+  left: -9999em;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 0;
+}
+.tiles {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-display: flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+.tile {
+  background: url("https://unsplash.it/600/400/?image=441") center no-repeat;
+  background-size: cover;
+  height: 350px;
+  transition: all 300ms ease-in-out;
+  width: 500px;
+}
+.tile:nth-of-type(1) {
+  -webkit-filter: url(#duotone_darkblue);
+  -moz-filter: url(#duotone_darkblue);
+  -o-filter: url(#duotone_darkblue);
+  -ms-filter: url(#duotone_darkblue);
+  filter: url(#duotone_darkblue);
+}
+.tile:nth-of-type(2) {
+  -webkit-filter: url(#duotone_redblue);
+  -moz-filter: url(#duotone_redblue);
+  -o-filter: url(#duotone_redblue);
+  -ms-filter: url(#duotone_redblue);
+  filter: url(#duotone_redblue);
+}
+.tile:nth-of-type(3) {
+  -webkit-filter: url(#duotone_bluedarkorange);
+  -moz-filter: url(#duotone_bluedarkorange);
+  -o-filter: url(#duotone_bluedarkorange);
+  -ms-filter: url(#duotone_bluedarkorange);
+  filter: url(#duotone_bluedarkorange);
+}
+.tile:nth-of-type(4) {
+  -webkit-filter: url(#duotone_blueorange);
+  -moz-filter: url(#duotone_blueorange);
+  -o-filter: url(#duotone_blueorange);
+  -ms-filter: url(#duotone_blueorange);
+  filter: url(#duotone_blueorange);
+}
+.tile:nth-of-type(5) {
+  -webkit-filter: url(#duotone_seafoam);
+  -moz-filter: url(#duotone_seafoam);
+  -o-filter: url(#duotone_seafoam);
+  -ms-filter: url(#duotone_seafoam);
+  filter: url(#duotone_seafoam);
+}
+.tile:nth-of-type(6) {
+  -webkit-filter: url(#duotone_lightblue);
+  -moz-filter: url(#duotone_lightblue);
+  -o-filter: url(#duotone_lightblue);
+  -ms-filter: url(#duotone_lightblue);
+  filter: url(#duotone_lightblue);
+}
+.tile:nth-of-type(7) {
+  -webkit-filter: url(#duotone_bluetan);
+  -moz-filter: url(#duotone_bluetan);
+  -o-filter: url(#duotone_bluetan);
+  -ms-filter: url(#duotone_bluetan);
+  filter: url(#duotone_bluetan);
+}
+.tile:nth-of-type(8) {
+  -webkit-filter: url(#duotone_spotify_blue);
+  -moz-filter: url(#duotone_spotify_blue);
+  -o-filter: url(#duotone_spotify_blue);
+  -ms-filter: url(#duotone_spotify_blue);
+  filter: url(#duotone_spotify_blue);
+}
+.tile:nth-of-type(8):before {
+  content: "Spotify
+Gradient";
+  display: block;
+  margin: 20px;
+}
+.tile:nth-of-type(9) {
+  -webkit-filter: url(#duotone_spotify_peachy);
+  -moz-filter: url(#duotone_spotify_peachy);
+  -o-filter: url(#duotone_spotify_peachy);
+  -ms-filter: url(#duotone_spotify_peachy);
+  filter: url(#duotone_spotify_peachy);
+}
+.tile:nth-of-type(9):before {
+  content: "Spotify Gradient";
+  display: block;
+  margin: 20px;
+}
+.tile.blendmode {
+  background: linear-gradient(#ed3ea4 0%, #fdc66c 100%),
+    url("https://unsplash.it/600/400/?image=441");
+  background-blend-mode: multiply;
+  position: relative;
+}
+.tile.blendmode:before {
+  background: #ed3ea4;
+  content: "";
+  color: #ffffff;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  opacity: 0.3;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.tile.blendmode:after {
+  content: "CSS Blendmode variation: Close enough, right?
+*shrug*";
+  left: 0;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+}
+.tile:hover,
+.tile:focus {
+  -webkit-filter: none;
+  filter: none;
+  background-blend-mode: normal;
+}

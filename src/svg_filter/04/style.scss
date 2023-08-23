@@ -1,0 +1,37 @@
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tile {
+  background: url("https://unsplash.it/600/400/?image=441") center no-repeat;
+  background-size: cover;
+  height: 350px;
+  width: 500px;
+  &:nth-child(1) {
+    filter: url(#duotone_darkblue);
+  }
+  &:nth-child(2) {
+    filter: url(#duotone_redblue);
+  }
+  &:nth-child(3) {
+    filter: url(#duotone_bluedarkorange);
+  }
+  &:nth-child(4) {
+    filter: url(#duotone_blueorange);
+  }
+  &:nth-child(5) {
+    filter: url(#duotone_seafoam);
+  }
+  &:nth-child(6) {
+    filter: url(#duotone_lightblue);
+  }
+  &:nth-child(7) {
+    filter: url(#duotone_bluetan);
+  }
+  &:nth-child(8) {
+    filter: url(#duotone_spotify_blue);
+  }
+  &:nth-child(9) {
+    filter: url(#duotone_spotify_peachy);
+  }
+}
