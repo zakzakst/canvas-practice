@@ -1,0 +1,19 @@
+#filters {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.noise {
+  // NOTE: 要素の淵にフィルターが適用範囲されないことを防ぐ目的でmargin,paddingを設定
+  display: inline-block;
+  opacity: 0;
+  filter: url(#textNoise);
+  font-size: 32px;
+  font-weight: bold;
+  margin: -0.1em;
+  padding: 0.1em;
+}
