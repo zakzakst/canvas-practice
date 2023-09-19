@@ -16,7 +16,8 @@
     "dev2": "parcel src/22_math/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "build2": "parcel build src/scroll_fix_2/index.html --public-url /canvas-practice/",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "snippet-test": "node ./snippet-memo/test.js"
   },
   "repository": {
     "type": "git",
