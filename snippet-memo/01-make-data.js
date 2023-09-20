@@ -1,8 +1,8 @@
 // 【参考】
 // https://qiita.com/reika_engineer/items/b8b6ca343cf33157a666
 
-// 【内容】
-// 指定の数の配列データを作成する
+// 【内容：指定の数の配列データを作成する】
+
 const total = 20;
 
 const items = [...new Array(total)].map((_, index) => ({
@@ -12,8 +12,7 @@ const items = [...new Array(total)].map((_, index) => ({
 
 console.log(items);
 
-// 【内容】
-// アルファベットの配列を作成する
+// 【内容：アルファベットの配列を作成する】
 
 // 「a」のUTF-16コードを取得
 const start = "a".charCodeAt(0);
