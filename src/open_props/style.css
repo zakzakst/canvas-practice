@@ -1,0 +1,243 @@
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
+@import "https://unpkg.com/open-props/colors-hsl.min.css";
+
+/* cssでテーマのベース作る時に便利そう */
+/* --my-var が定義されていなければ red */
+/* color: var(--my-var, red); */
+
+/* ==========
+ * 色
+========== */
+.color-1 {
+  background: var(--blue-2);
+  color: var(--gray-12);
+}
+.color-2 {
+  background: hsl(var(--red-9-hsl) / 30%);
+}
+
+/* ==========
+ * グラデーション
+========== */
+.gradient-1 {
+  background-image: var(--gradient-5);
+}
+.gradient-2 {
+  background-image: var(--gradient-12);
+}
+.gradient-3 {
+  background-image: var(--gradient-21);
+}
+
+/* ==========
+ * ノイズ
+========== */
+.noise-1 {
+  background-image: linear-gradient(to top, black, #0000), var(--noise-5);
+  filter: var(--noise-filter-2);
+  background-size: cover;
+}
+
+/* ==========
+ * 影
+========== */
+.shadow-1 {
+  box-shadow: var(--shadow-3);
+}
+.shadow-2 {
+  box-shadow: var(--inner-shadow-4);
+}
+
+/* ==========
+ * アスペクト比
+========== */
+.aspect-ratio-1 {
+  block-size: 480px;
+  background: #fff;
+  aspect-ratio: var(--ratio-widescreen);
+}
+
+.aspect-ratio-2 {
+  block-size: 480px;
+  background: #ddd;
+  aspect-ratio: var(--ratio-landscape);
+}
+
+/* ==========
+ * 文字
+========== */
+.typography-1 {
+  font-size: var(--font-size-00);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-1);
+  letter-spacing: var(--font-letterspacing-0);
+  line-height: var(--font-lineheight-00);
+}
+.typography-2 {
+  font-size: var(--font-size-0);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-2);
+  letter-spacing: var(--font-letterspacing-1);
+  line-height: var(--font-lineheight-00);
+}
+.typography-3 {
+  font-size: var(--font-size-2);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-3);
+  letter-spacing: var(--font-letterspacing-2);
+  line-height: var(--font-lineheight-1);
+}
+.typography-4 {
+  font-size: var(--font-size-4);
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-4);
+  letter-spacing: var(--font-letterspacing-3);
+  line-height: var(--font-lineheight-1);
+}
+.typography-5 {
+  font-size: var(--font-size-8);
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-5);
+  letter-spacing: var(--font-letterspacing-4);
+  line-height: var(--font-lineheight-2);
+}
+.typography-6 {
+  font-size: var(--font-size-fluid-0);
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-6);
+  letter-spacing: var(--font-letterspacing-5);
+  line-height: var(--font-lineheight-3);
+}
+.typography-7 {
+  font-size: var(--font-size-fluid-1);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-7);
+  letter-spacing: var(--font-letterspacing-6);
+  line-height: var(--font-lineheight-4);
+}
+.typography-8 {
+  font-size: var(--font-size-fluid-2);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-8);
+  letter-spacing: var(--font-letterspacing-7);
+  line-height: var(--font-lineheight-5);
+}
+.typography-9 {
+  font-size: var(--font-size-fluid-3);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-9);
+  letter-spacing: var(--font-letterspacing-7);
+  line-height: var(--font-lineheight-5);
+}
+
+/* ==========
+ * イージング
+========== */
+.easing {
+  transition: 0.5s;
+}
+.easing:hover {
+  transform: translateX(100px);
+}
+.easing.--1 {
+  transition-timing-function: var(--ease-1);
+}
+.easing.--2 {
+  transition-timing-function: var(--ease-in-2);
+}
+.easing.--3 {
+  transition-timing-function: var(--ease-out-3);
+}
+.easing.--4 {
+  transition-timing-function: var(--ease-in-out-4);
+}
+.easing.--5 {
+  transition-timing-function: var(--ease-elastic-5);
+}
+.easing.--6 {
+  transition-timing-function: var(--ease-squish-5);
+}
+.easing.--7 {
+  transition-timing-function: var(--ease-spring-5);
+}
+.easing.--8 {
+  transition-timing-function: var(--ease-step-5);
+}
+
+/* ==========
+ * サイズ
+========== */
+.size {
+  background: #fff;
+  overflow: hidden;
+  height: 30px;
+}
+.size.--1 {
+  width: var(--size-1);
+}
+.size.--2 {
+  width: var(--size-15);
+}
+.size.--3 {
+  width: var(--size-fluid-1);
+}
+.size.--4 {
+  width: var(--size-fluid-10);
+}
+.size.--5 {
+  width: var(--size-content-1);
+}
+.size.--6 {
+  width: var(--size-content-3);
+}
+.size.--7 {
+  width: var(--size-header-1);
+}
+.size.--8 {
+  width: var(--size-header-3);
+}
+.size.--9 {
+  width: var(--size-relative-1);
+}
+.size.--10 {
+  width: var(--size-relative-15);
+}
+
+/* ==========
+ * ボーダー
+========== */
+.border-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.border {
+  width: 80px;
+  height: 80px;
+  border: solid var(--gray-1);
+}
+.border.--1 {
+  border-width: var(--border-size-1);
+  border-radius: var(--radius-2);
+}
+.border.--2 {
+  border-width: var(--border-size-2);
+  border-radius: var(--radius-4);
+}
+.border.--3 {
+  border-width: var(--border-size-3);
+  border-radius: var(--radius-round);
+}
+.border.--4 {
+  border-width: var(--border-size-4);
+  border-radius: var(--radius-blob-1);
+}
+.border.--5 {
+  border-width: var(--border-size-5);
+  border-radius: var(--radius-conditional-2);
+}
+.border.--6 {
+  border-width: var(--border-size-6);
+  border-radius: var(--radius-conditional-4);
+}
