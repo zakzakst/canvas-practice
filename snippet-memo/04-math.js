@@ -106,3 +106,21 @@ const zeroPadding = (targetNum, digits) => {
 console.log(zeroPadding(12.3, 5));
 console.log(zeroPadding(12, 5.5));
 console.log(zeroPadding(12, 5));
+
+/**
+ * 範囲指定した乱数の取得
+ *
+ * @function
+ * @param {number} max 乱数の最大値
+ * @param {number} min 乱数の最小値
+ * @returns {number} 乱数
+ */
+const rangeRandom = (max, min) => {
+  // TODO: 要対応。最小値が最大値より大きい場合の処理
+  // TODO: ランダムな数を利用した場合のテストコード調べてみる
+  return Math.floor(Math.random() * (max + 1 - min) + min);
+};
+
+for (let i = 0; i < 20; i++) {
+  console.log(rangeRandom(6, 2));
+}
