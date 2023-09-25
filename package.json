@@ -14,7 +14,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/svg_filter/05/index.html",
-    "dev2": "parcel src/open_props/*.html",
+    "dev2": "parcel src/css_117/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "build2": "parcel build src/scroll_fix_2/index.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist",

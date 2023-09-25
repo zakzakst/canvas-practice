@@ -1,0 +1,131 @@
+/** ==========
+ * @starting-style
+========== **/
+.starting-style-1 {
+  // display: none;
+  color: #f00;
+  transition: color 1s;
+}
+.starting-style-2 {
+  // display: none;
+  opacity: 1;
+  transition: opacity 1s;
+}
+.starting-style-3 {
+  color: #f00;
+  transition: color 1s;
+  &:hover {
+    // 一度starting-styleの色になってからtransitionする
+    color: #0f0;
+  }
+}
+.section.--starting-style {
+  display: none;
+  // visibilityの切替だとstarting-styleは発生しない
+  // visibility: hidden;
+}
+.--test {
+  &.section.--starting-style {
+    display: block;
+    // visibility: visible;
+  }
+  // .starting-style-1 {
+  //   display: block;
+  // }
+  // .starting-style-2 {
+  //   display: block;
+  // }
+}
+@starting-style {
+  .starting-style-1 {
+    color: #0f0;
+  }
+  .starting-style-2 {
+    opacity: 0;
+  }
+  .starting-style-3 {
+    color: #00f;
+  }
+}
+
+/** ==========
+ * transition-behavior
+========== **/
+.transition-behavior-1,
+.transition-behavior-2 {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s, display 1s;
+}
+.transition-behavior-2 {
+  transition-behavior: allow-discrete;
+}
+.--test {
+  &.section.--transition-behavior {
+    .transition-behavior-1,
+    .transition-behavior-2 {
+      display: block;
+      opacity: 1;
+    }
+  }
+}
+@starting-style {
+  .--test {
+    &.section.--transition-behavior {
+      .transition-behavior-2 {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+/** ==========
+ * overlayプロパティ
+========== **/
+// overlayプロパティを使うことで、以下のように、最上位レイヤーから削除することと、CSSトランジションの順番が入れ替わります。
+// ■通常の場合
+//   1. 最上位レイヤーから削除される
+//   2. トランジションが行われる
+// ■overlayが使われているの場合
+//   1. トランジションが行われる
+//   2. 最上位レイヤーから削除される
+.dialog {
+  opacity: 0;
+  transition: opacity 1s, display 1s allow-discrete;
+  &::backdrop {
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: opacity 1s, display 1s allow-discrete;
+  }
+  &[open] {
+    opacity: 1;
+    &::backdrop {
+      opacity: 1;
+    }
+  }
+}
+@starting-style {
+  .dialog {
+    &[open] {
+      opacity: 0;
+      &::backdrop {
+        opacity: 0;
+      }
+    }
+  }
+}
+.dialog.--2 {
+  transition: opacity 1s, display 1s allow-discrete, overlay 1s allow-discrete;
+  &::backdrop {
+    transition: opacity 1s, display 1s allow-discrete, overlay 1s allow-discrete;
+  }
+}
+.overlay-fix-content {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: #eee;
+  z-index: 100;
+}

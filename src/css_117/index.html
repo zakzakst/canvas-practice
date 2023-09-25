@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./style.scss" />
+  </head>
+  <body>
+    <!-- https://coliss.com/articles/build-websites/operation/css/adds-6-new-css-features-in-chrome-117.html -->
+    <!-- https://coliss.com/articles/build-websites/operation/css/4-new-css-features-for-smooth-animations.html -->
+    <!-- https://qiita.com/degudegu2510/items/0b180e795ace402fbb36 -->
+    <!-- https://coliss.com/articles/build-websites/operation/css/css-new-property-content-visibility.html -->
+
+    <!--
+      オーバーレイをクリックしたら閉じるように
+      https://qiita.com/Hiroki_M/items/3ff6d6eefcce99cf0a30
+      ttps://zenn.dev/ankoromochitaro/articles/fc348b8829971f#オーバーレイをクリックしたら閉じるように
+    -->
+    <div class="container is-max-desktop">
+      <p><button id="test" class="button">test</button></p>
+      <!-- ▼▼▼ @starting-style ▼▼▼ -->
+      <section class="section --starting-style">
+        <p class="starting-style-1">starting style 1</p>
+        <p class="starting-style-2">starting style 2</p>
+        <p class="starting-style-3">starting style 3</p>
+      </section>
+      <!-- ▲▲▲ @starting-style ▲▲▲ -->
+
+      <!-- ▼▼▼ transition-behavior ▼▼▼ -->
+      <section class="section --transition-behavior">
+        <p class="transition-behavior-1">transition behavior 1</p>
+        <p class="transition-behavior-2">transition behavior 2</p>
+      </section>
+      <!-- ▲▲▲ transition-behavior ▲▲▲ -->
+
+      <!-- ▼▼▼ overlayプロパティ ▼▼▼ -->
+      <section class="section --overlay">
+        <p><button id="overlay-1" class="button">overlay 1</button></p>
+        <p><button id="overlay-2" class="button">overlay 2</button></p>
+        <dialog id="dialog-1" class="dialog --1">
+          <div class="box">dialog 1</div>
+        </dialog>
+        <dialog id="dialog-2" class="dialog --2">
+          <div class="box">dialog 2</div>
+        </dialog>
+        <div class="overlay-fix-content">固定要素</div>
+      </section>
+      <!-- ▲▲▲ overlayプロパティ ▲▲▲ -->
+
+      <!-- ▼▼▼ subgrid ▼▼▼ -->
+      <!-- ▲▲▲ subgrid ▲▲▲ -->
+    </div>
+
+    <script>
+      const testButton = document.getElementById("test");
+      const sectionEls = document.querySelectorAll(".section");
+      testButton.addEventListener("click", () => {
+        [...sectionEls].forEach((el) => {
+          el.classList.toggle("--test");
+        });
+      });
+
+      const overlayButton1 = document.getElementById("overlay-1");
+      const overlayButton2 = document.getElementById("overlay-2");
+      const dialog1 = document.getElementById("dialog-1");
+      const dialog2 = document.getElementById("dialog-2");
+      overlayButton1.addEventListener("click", () => {
+        dialog1.showModal();
+      });
+      overlayButton2.addEventListener("click", () => {
+        dialog2.showModal();
+      });
+      dialog1.addEventListener("click", (e) => {
+        if (!e.target.closest(".box")) {
+          dialog1.close();
+        }
+      });
+      dialog2.addEventListener("click", (e) => {
+        if (!e.target.closest(".box")) {
+          dialog2.close();
+        }
+      });
+    </script>
+  </body>
+</html>
