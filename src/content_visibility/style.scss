@@ -1,0 +1,17 @@
+.section {
+  content-visibility: auto;
+  &.--3 {
+    // content-visibility: hidden;
+    contain-intrinsic-size: auto 1000px;
+  }
+  &.--4 {
+    content-visibility: hidden;
+    contain-intrinsic-size: 1000px;
+  }
+  // &.--4 {
+  //   display: none;
+  // }
+  img {
+    aspect-ratio: 1600 / 800;
+  }
+}
