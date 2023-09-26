@@ -13,4 +13,4 @@ const getShuffleArray = <T>(arr: T[]): T[] => {
   return arrClone;
 };
 
-console.log(getShuffleArray([1, 2, 3]));
+console.log(getShuffleArray([1, { test: 2 }, 3]));
