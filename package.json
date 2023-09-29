@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "parcel src/svg_filter/05/index.html",
     "dev2": "parcel src/content_visibility/*.html",
+    "dev-my-lib": "parcel src/my_lib_test/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "build2": "parcel build src/scroll_fix_2/index.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist",
@@ -41,6 +42,7 @@
     "pixi-filters": "^5.2.1",
     "pixi.js": "^7.2.4",
     "stats-js": "^1.0.1",
+    "tax-lib": "^0.0.0",
     "three": "^0.151.2",
     "vue": "^3.2.47"
   }
