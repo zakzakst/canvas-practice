@@ -21,7 +21,7 @@
     "build2": "parcel build src/scroll_fix_2/index.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist",
     "snippet-test": "node ./snippet-memo/08-reverse-string.js",
-    "snippet-test-ts": "./node_modules/.bin/ts-node ./snippet-memo/16-geolocation-api.ts",
+    "snippet-test-ts": "./node_modules/.bin/ts-node ./snippet-memo/17-get-object-keys.ts",
     "doc": "jsdoc -r snippet-memo"
   },
   "repository": {
