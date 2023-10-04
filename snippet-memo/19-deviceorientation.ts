@@ -2,11 +2,14 @@
 // https://developer.mozilla.org/ja/docs/Web/API/Window/deviceorientation_event
 
 // 【内容：モバイルデバイスの傾きを検出】
+if (window.DeviceOrientationEvent) {
+  window.addEventListener("deviceorientation", (e) => {
+    const rotateDegrees = e.alpha;
+    const leftToRight = e.gamma;
+    const frontToBack = e.beta;
 
-// window.addEventListener('deviceorientation', (event) => {
-//   const alpha = event.alpha; // 方位角（0-360度）
-//   const beta = event.beta;   // 前後の傾き（-90から90度）
-//   const gamma = event.gamma; // 左右の傾き（-90から90度）
-
-//   console.log(`方位角: ${alpha}, 前後の傾き: ${beta}, 左右の傾き: ${gamma}`);
-// });
+    console.log(
+      `方位角: ${rotateDegrees}, 左右の傾き: ${leftToRight}, 前後の傾き: ${frontToBack}`
+    );
+  });
+}
