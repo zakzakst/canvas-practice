@@ -15,7 +15,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/svg_filter/05/index.html",
-    "dev2": "parcel src/content_visibility/*.html",
+    "dev2": "parcel src/modal_responsive/*.html",
     "dev-my-lib": "parcel src/my_lib_test/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "build2": "parcel build src/scroll_fix_2/index.html --public-url /canvas-practice/",
