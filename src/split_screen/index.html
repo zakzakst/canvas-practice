@@ -6,16 +6,288 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
     />
-    <!-- <link
+    <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    /> -->
+    />
     <link rel="stylesheet" href="./style.scss" />
   </head>
   <body>
-    <!-- <div class="container is-max-desktop">
-      <section class="section"></section>
-    </div> -->
+    <div class="layout">
+      <!-- ▼▼▼ ヘッダー ▼▼▼ -->
+      <header class="header">
+        <div class="header__logo">
+          <a href="#">LOGO</a>
+        </div>
+        <div class="header__buttons buttons">
+          <button class="button is-link is-light">ボタン</button>
+          <button class="button is-link is-light">ボタン</button>
+        </div>
+      </header>
+      <!-- ▲▲▲ ヘッダー ▲▲▲ -->
+
+      <!-- ▼▼▼ キービジュアル ▼▼▼ -->
+      <div class="kv">
+        <div class="kv__content box">
+          <div class="content">
+            <h2 class="is-size-3 has-text-centered">見てほしい内容</h2>
+            <ul>
+              <li>開催中のイベント・キャンペーン</li>
+              <li>ブランドイメージを強化するための画像</li>
+              <li>利用シーンをイメージできる画像</li>
+            </ul>
+            <p class="has-text-centered">
+              <button class="button is-link">コンバージョン</button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- ▲▲▲ キービジュアル ▲▲▲ -->
+
+      <div class="contents-container">
+        <!-- ▼▼▼ メインコンテンツ ▼▼▼ -->
+        <main class="main section">
+          <h1 class="is-size-1">スプリットスクリーン</h1>
+          <div class="content mt-2">
+            <p>
+              スプリットスクリーンレイアウトは画面を大きく分割するレイアウトで、情報の整理と比較が重要な場合に特に有用です。ただ、ちょっと癖のあるレイアウトでもあります。効果的に利用するために、メリット・デメリットを把握しましょう。
+            </p>
+          </div>
+          <section class="section px-0">
+            <h2 class="is-size-3">メリット</h2>
+
+            <div class="box mt-2">
+              <div class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img
+                      src="https://bulma.io/images/placeholders/128x128.png"
+                    />
+                  </p>
+                </figure>
+                <div class="media-content content">
+                  <h3 class="is-size-5">
+                    見てほしい内容を印象付けることができる
+                  </h3>
+                  <p class="is-size-7">
+                    「見てほしい情報」が固定されているため、常にユーザーの目に留まる。そのため、「ユーザーに伝えたい情報」や「ユーザーが必要とする情報」にアクセスしやすい状態をつくれる。
+                  </p>
+                  <p>
+                    <button class="button is-rounded is-small js-detail-button">
+                      詳細を見る
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img
+                      src="https://bulma.io/images/placeholders/128x128.png"
+                    />
+                  </p>
+                </figure>
+                <div class="media-content content">
+                  <h3 class="is-size-5">情報が不要な人は読み飛ばせる</h3>
+                  <p class="is-size-7">
+                    「見てほしい情報」が固定されている状態ではあるが、もう一方のコンテンツのスクロールは疎外しない。
+                  </p>
+                  <p>
+                    <button class="button is-rounded is-small js-detail-button">
+                      詳細を見る
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img
+                      src="https://bulma.io/images/placeholders/128x128.png"
+                    />
+                  </p>
+                </figure>
+                <div class="media-content content">
+                  <h3 class="is-size-5">印象的なレイアウト</h3>
+                  <p class="is-size-7">
+                    特長的であまり見かけないレイアウトのため、ユーザーの印象に残る。
+                  </p>
+                  <p>
+                    <button class="button is-rounded is-small js-detail-button">
+                      詳細を見る
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img
+                      src="https://bulma.io/images/placeholders/128x128.png"
+                    />
+                  </p>
+                </figure>
+                <div class="media-content content">
+                  <h3 class="is-size-5">スカスカした印象をなくせる</h3>
+                  <p class="is-size-7">
+                    掲載内容が少ないページなどでさみしい印象になってしまう場合、スペースを調整してその印象を軽減できる。
+                  </p>
+                  <p>
+                    <button class="button is-rounded is-small js-detail-button">
+                      詳細を見る
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section px-0">
+            <h2 class="is-size-3">デメリット</h2>
+
+            <div class="box mt-2">
+              <div class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img
+                      src="https://bulma.io/images/placeholders/128x128.png"
+                    />
+                  </p>
+                </figure>
+                <div class="media-content content">
+                  <h3 class="is-size-5">
+                    コンテンツ部分の情報に強弱をつけづらい
+                  </h3>
+                  <p class="is-size-7">
+                    「見てほしい情報」が目立つ関係上、相対的にコンテンツ部分は目立ちづらくなります。<br />もし、コンテンツ部分を目立つデザインにした場合、ページ全体で見た時にごちゃごちゃした印象になってしまう可能性が高いです。
+                  </p>
+                  <p class="is-size-7">
+                    結果として、「コンテンツ部分のデザインを抑える ⇒
+                    情報に強弱をつけづらい」となります。
+                  </p>
+                  <p>
+                    <button class="button is-rounded is-small js-detail-button">
+                      詳細を見る
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img
+                      src="https://bulma.io/images/placeholders/128x128.png"
+                    />
+                  </p>
+                </figure>
+                <div class="media-content content">
+                  <h3 class="is-size-5">他のページと調和しづらい</h3>
+                  <p class="is-size-7">
+                    特長的なレイアウトのため、複数ページあるサイトで利用すると、他のページがシングルカラムレイアウトなどよく見るデザインの時に調和しづらい。
+                  </p>
+                  <p class="is-size-7">
+                    サイト全体でスプリットスクリーンレイアウトを採用する場合、サイト全体の自由度が下がる。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section px-0">
+            <h2 class="is-size-3">スプリットスクリーンが効果的なページ</h2>
+            <div class="content">
+              <ul>
+                <li>目立たせたい情報が絞り込めている</li>
+                <li>掲載内容が少な目でシンプル</li>
+                <li>LPなど1ページで完結する</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="section px-0">
+            <h2 class="is-size-3">参考ページ</h2>
+            <div class="content">
+              <ul>
+                <li>
+                  <a href="https://marufab.com/" target="_blank">丸石織物</a>
+                </li>
+                <li>
+                  <a href="https://www.ani-terrace.com/" target="_blank"
+                    >ani TERRACE</a
+                  >
+                </li>
+                <li>
+                  <a href="https://renew-sendai.jp/" target="_blank">RE-NEW</a>
+                </li>
+                <li>
+                  <a href="https://minico.handmade.jp/" target="_blank"
+                    >夜更けのカード</a
+                  >
+                </li>
+                <li>
+                  <a href="https://dokodemo.app/ja" target="_blank"
+                    >どこでも待合室</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </section>
+        </main>
+        <!-- ▲▲▲ メインコンテンツ ▲▲▲ -->
+
+        <!-- ▼▼▼ フッター ▼▼▼ -->
+        <footer class="section has-background-light content">
+          <ul>
+            <li><a href="#">フッターリンク</a></li>
+            <li><a href="#">フッターリンク</a></li>
+            <li><a href="#">フッターリンク</a></li>
+            <li><a href="#">フッターリンク</a></li>
+            <li><a href="#">フッターリンク</a></li>
+          </ul>
+        </footer>
+        <!-- ▲▲▲ フッター ▲▲▲ -->
+      </div>
+    </div>
+
+    <!-- ▼▼▼ モーダル ▼▼▼ -->
+    <div class="modal" id="js-modal">
+      <div class="modal-background js-close"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">見出し</p>
+          <button class="delete js-close"></button>
+        </header>
+        <section class="modal-card-body">
+          <p>
+            <figure class="image is-2by1">
+              <img src="https://bulma.io/images/placeholders/640x320.png" />
+            </figure>
+          </p>
+          <p>
+            テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+          </p>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success">ボタン</button>
+          <button class="button">ボタン</button>
+        </footer>
+      </div>
+      <!-- <button class="modal-close is-large js-close"></button> -->
+    </div>
+    <!-- ▲▲▲ モーダル ▲▲▲ -->
+
     <script src="./script.ts"></script>
   </body>
 </html>
