@@ -18,7 +18,7 @@
     "dev2": "parcel src/split_screen/*.html",
     "dev-my-lib": "parcel src/my_lib_test/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
-    "build2": "parcel build src/scroll_fix_2/index.html --public-url /canvas-practice/",
+    "build2": "parcel build src/split_screen/index.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist",
     "snippet-test": "node ./snippet-memo/08-reverse-string.js",
     "snippet-test-ts": "./node_modules/.bin/ts-node ./snippet-memo/26-async-callback.ts",
