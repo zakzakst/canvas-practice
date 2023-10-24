@@ -2,6 +2,7 @@
 <html lang="ja">
   <head>
     <title>sample</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
@@ -20,8 +21,11 @@
           <a href="#">LOGO</a>
         </div>
         <div class="header__buttons buttons">
-          <button class="button is-link is-light">ボタン</button>
-          <button class="button is-link is-light">ボタン</button>
+          <button class="button is-link is-light is-small">ボタン</button>
+          <button class="button is-link is-light is-small">ボタン</button>
+          <button class="button is-link is-small is-hidden-tablet">
+            コンバージョン
+          </button>
         </div>
       </header>
       <!-- ▲▲▲ ヘッダー ▲▲▲ -->
@@ -63,7 +67,7 @@
           <section class="section px-0">
             <h2 class="is-size-3">メリット</h2>
 
-            <div class="box mt-2">
+            <div class="box2 mt-2">
               <div class="media">
                 <figure class="media-left">
                   <p class="image is-64x64">
@@ -88,7 +92,7 @@
               </div>
             </div>
 
-            <div class="box">
+            <div class="box2">
               <div class="media">
                 <figure class="media-left">
                   <p class="image is-64x64">
@@ -111,7 +115,7 @@
               </div>
             </div>
 
-            <div class="box">
+            <div class="box2">
               <div class="media">
                 <figure class="media-left">
                   <p class="image is-64x64">
@@ -134,7 +138,7 @@
               </div>
             </div>
 
-            <div class="box">
+            <div class="box2">
               <div class="media">
                 <figure class="media-left">
                   <p class="image is-64x64">
@@ -161,7 +165,7 @@
           <section class="section px-0">
             <h2 class="is-size-3">デメリット</h2>
 
-            <div class="box mt-2">
+            <div class="box2 mt-2">
               <div class="media">
                 <figure class="media-left">
                   <p class="image is-64x64">
@@ -190,7 +194,7 @@
               </div>
             </div>
 
-            <div class="box">
+            <div class="box2">
               <div class="media">
                 <figure class="media-left">
                   <p class="image is-64x64">
@@ -207,6 +211,28 @@
                   <p class="is-size-7">
                     サイト全体でスプリットスクリーンレイアウトを採用する場合、サイト全体の自由度が下がる。
                   </p>
+                  <p>
+                    <button class="button is-rounded is-small js-detail-button">
+                      詳細を見る
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="box2">
+              <div class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                    <img
+                      src="https://bulma.io/images/placeholders/128x128.png"
+                    />
+                  </p>
+                </figure>
+                <div class="media-content content">
+                  <h3 class="is-size-5">
+                    アクセスがSPメインだとあまり効果はない
+                  </h3>
                   <p>
                     <button class="button is-rounded is-small js-detail-button">
                       詳細を見る
@@ -251,6 +277,11 @@
                 <li>
                   <a href="https://dokodemo.app/ja" target="_blank"
                     >どこでも待合室</a
+                  >
+                </li>
+                <li>
+                  <a href="https://www.nodai.ac.jp/" target="_blank"
+                    >情報がごちゃついてしまった例</a
                   >
                 </li>
               </ul>
@@ -299,6 +330,21 @@
       <!-- <button class="modal-close is-large js-close"></button> -->
     </div>
     <!-- ▲▲▲ モーダル ▲▲▲ -->
+
+    <!-- ▼▼▼ キャンペーン ▼▼▼ -->
+    <div id="js-campaign" class="campaign notification is-link is-light mb-0">
+      <button class="delete js-campaign-close"></button>
+      <div>
+        <p>キャンペーン</p>
+        <p class="is-size-7">
+          テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+        </p>
+        <p class="mt-2">
+          <button class="button is-rounded is-small">詳細を見る</button>
+        </p>
+      </div>
+    </div>
+    <!-- ▲▲▲ キャンペーン ▲▲▲ -->
 
     <script src="./script.ts"></script>
   </body>
