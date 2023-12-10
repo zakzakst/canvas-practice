@@ -1,0 +1,96 @@
+.spacer {
+  height: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.img-img {
+  position: relative;
+  z-index: 2;
+}
+
+/* 背景1 */
+.img.--1 .img-bg {
+  position: absolute;
+  top: 25%;
+  bottom: 25%;
+  left: 25%;
+  right: 25%;
+  display: flex;
+  transform: skew(-30deg);
+}
+
+.img.--1 .img-bg span {
+  display: block;
+  width: 25%;
+  height: 100%;
+}
+
+.img.--1 .img-bg span:nth-child(2n + 1) {
+  background: #aaa;
+}
+
+.img.--1 .img-bg span:nth-child(2n) {
+  background: #ddd;
+}
+
+/* 背景2 */
+.img.--2 .img-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* 背景3 */
+.img.--3 .img-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  aspect-ratio: 650 / 500;
+  margin: auto;
+}
+
+.img.--3 {
+  --stroke-length: 0;
+}
+
+.img.--3 .img-bg path {
+  stroke: #fff;
+  stroke-width:60px;
+  stroke-dasharray: var(--stroke-length), var(--stroke-length);
+  stroke-dashoffset: var(--stroke-length);
+}
+
+.img.--3.--animated .img-bg path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.7s ease-out;
+}
+
+foreignObject {
+  width: 100%;
+  height: 100%;
+}
+
+foreignObject img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
