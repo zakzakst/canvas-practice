@@ -14,8 +14,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/svg_filter/05/index.html",
-    "dev2": "parcel src/view-transitions-2/*.html",
+    "dev": "parcel src/lottie/index.html",
+    "dev2": "parcel src/_old/svg_filter/**/*.html",
     "dev-my-lib": "parcel src/my_lib_test/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",
     "build2": "parcel build src/split_screen/index.html --public-url /canvas-practice/",
@@ -35,6 +35,8 @@
   },
   "homepage": "https://github.com/zakzakst/canvas-practice#readme",
   "dependencies": {
+    "@lottiefiles/lottie-interactivity": "^1.6.2",
+    "@lottiefiles/lottie-player": "^2.0.2",
     "@studio-freight/lenis": "^1.0.12",
     "animejs": "^3.2.1",
     "gsap": "^3.12.1",
