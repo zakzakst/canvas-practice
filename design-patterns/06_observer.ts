@@ -1,3 +1,5 @@
+// https://zenn.dev/morinokami/books/learning-patterns-1/viewer/observer-pattern
+
 type ObservableFuncArg = string
 type ObservableFunc = (arg: ObservableFuncArg) => void
 
