@@ -1,4 +1,5 @@
 // https://zenn.dev/morinokami/books/learning-patterns-1/viewer/mixin-pattern
+
 // 上手くいかない。一旦後回し
 
 class PetDog {
