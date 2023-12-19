@@ -21,7 +21,7 @@
     "build2": "parcel build src/split_screen/index.html --public-url /canvas-practice/",
     "deploy": "gh-pages -d dist",
     "snippet-test": "node ./snippet-memo/08-reverse-string.js",
-    "snippet-test-ts": "./node_modules/.bin/ts-node ./design-patterns/14_factory.ts",
+    "snippet-test-ts": "./node_modules/.bin/ts-node ./design-patterns/16_command.ts",
     "doc": "jsdoc -r snippet-memo"
   },
   "repository": {
