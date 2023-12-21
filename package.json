@@ -14,7 +14,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel src/lottie/index.html",
+    "dev": "parcel src/css_custom_property/index.html",
     "dev2": "parcel src/_old/svg_filter/**/*.html",
     "dev-my-lib": "parcel src/my_lib_test/*.html",
     "build": "parcel build src/**/*.html --public-url /canvas-practice/",

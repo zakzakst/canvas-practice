@@ -1,0 +1,40 @@
+:root {
+  --topHeaderHeight: 60px;
+  @media screen and (min-width: 768px) {
+    --topHeaderHeight: 80px;
+  }
+}
+
+.l_container {
+  display: grid;
+  height: 100vh;
+  grid-template-areas:  'l_header' 'l_main';
+  grid-template-rows: var(--topHeaderHeight, 0px) auto;
+}
+
+.l_header {
+  grid-area: l_header;
+  height: var(--topHeaderHeight, 0px);
+  background: #000;
+  color: #fff;
+  z-index: 1;
+}
+
+.header {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.l_main {
+  grid-area: l_main;
+  overflow-y: auto;
+  background: #fff;
+  color: #000;
+  padding: 16px;
+}
+
+.main {
+  height: 2000px;
+}
