@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>sample</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="./style.scss" />
+  </head>
+  <body>
+    <div class="container is-max-desktop" id="app">
+      <section class="section">
+        <!-- ▼▼▼ データあり ▼▼▼ -->
+        <div v-if="posts.length">
+          <!-- ▼▼▼ 一覧 ▼▼▼ -->
+          <div v-for="post in posts" :key="post.id">{{ post.title.rendered }}</div>
+          <!-- ▲▲▲ 一覧 ▲▲▲ -->
+
+          <!-- ▼▼▼ ページネーション ▼▼▼ -->
+          <div>PAGE：{{ currentPage + 1 }} / {{ totalPages }}</div>
+          <nav class="pagination">
+            <button
+              class="pagination-previous"
+              :class="{'is-disabled': currentPage === 0}"
+              @click="movePage(currentPage - 1)"
+            >前へ</button>
+            <ul class="pagination-list">
+              <li v-for="(el, index) in Array(Number(totalPages))">
+                <button
+                  class="pagination-link"
+                  :class="{'is-current': index === currentPage}"
+                  @click="movePage(index)"
+                >{{ index + 1 }}</button>
+              </li>
+            </ul>
+            <button
+              class="pagination-next"
+              :class="{'is-disabled': currentPage === totalPages - 1}"
+              @click="movePage(currentPage + 1)"
+            >次へ</button>
+          </nav>
+          <!-- ▲▲▲ ページネーション ▲▲▲ -->
+        </div>
+        <!-- ▲▲▲ データあり ▲▲▲ -->
+
+        <!-- ▼▼▼ データなし ▼▼▼ -->
+        <div v-else>
+          <!-- ▼▼▼ データ取得前 ▼▼▼ -->
+          <div v-if="!initialized">データ取得中</div>
+          <!-- ▲▲▲ データ取得前 ▲▲▲ -->
+
+          <!-- ▼▼▼ データ取得後 ▼▼▼ -->
+          <div v-else>データがありません</div>
+          <!-- ▲▲▲ データ取得後 ▲▲▲ -->
+        </div>
+        <!-- ▲▲▲ データなし ▲▲▲ -->
+        <button class="button" @click="changeSort">
+          <span v-if="order === 'desc'">昇順</span>
+          <span v-if="order === 'asc'">降順</span>
+          にする
+        </button>
+      </section>
+
+      <section v-if="categories.length" class="section">
+        <div class="tags are-medium">
+          <span
+            v-for="category in categories"
+            :key="category.id"
+            class="tag"
+            @click="changeCategory(category.id)"
+          >{{ category.id }}：{{ category.name }}</span>
+          <span class="tag" @click="changeCategory(null)">クリア</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <button class="button" @click="postsInit">postsInit</button>
+        <button class="button" @click="categoriesInit">categoriesInit</button>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
