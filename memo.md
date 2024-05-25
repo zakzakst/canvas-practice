@@ -1,4 +1,5 @@
 https://ics.media/tutorial-three/quickstart/
+https://docs.google.com/spreadsheets/d/1WX5gdQJT8dL7B64KT28Ic873k3LxH7sqduuIAlT_UsY/edit?usp=sharing
 
 ## 覚えておくこと
 
